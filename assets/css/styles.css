@@ -13,11 +13,17 @@
   }
 
 
-/* Positionnement du widget dans le header, par exemple */
-#google_translate_element {
-    position: absolute;
-    top: 10px;
-    right: 10px;
+  .language-switcher {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+}
+
+/* Ajustez la présentation sur mobile si nécessaire */
+@media screen and (max-width: 768px) {
+    .language-switcher {
+        margin-top: 10px;
+    }
 }
 
 /* Exemple de surcharge pour cacher le drapeau si besoin */
@@ -418,6 +424,7 @@
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
     gap: 2rem;
+    justify-content: center;
   }
   
   .project-card {

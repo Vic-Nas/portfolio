@@ -109,10 +109,8 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 });
 
 function googleTranslateElementInit() {
-            new google.translate.TranslateElement({
-                pageLanguage: 'fr',
-                includedLanguages: 'en,fr',
-                // Utilisation d'un layout inline pour obtenir le menu déroulant avec flèches
-                layout: google.translate.TranslateElement.InlineLayout.SIMPLE
-            }, 'google_translate_element');
-        }
+    new google.translate.TranslateElement({
+        pageLanguage: 'fr',
+        layout: google.translate.TranslateElement.InlineLayout.SIMPLE
+    }, 'google_translate_element');
+}
