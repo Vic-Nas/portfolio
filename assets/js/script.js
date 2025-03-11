@@ -135,11 +135,3 @@ function googleTranslateElementInit() {
         autoDisplay: false,  // Désactive l'affichage automatique
     }, 'google_translate_element');
 }
-
-window.onload = function() {
-    // Supprime les éléments de la barre Google Translate
-    document.querySelectorAll('.skiptranslate, iframe').forEach(el => el.remove());
-    
-    // Réajuste la position du body si nécessaire
-    document.body.style.top = "0px";
-};
