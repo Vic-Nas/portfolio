@@ -16,12 +16,14 @@ body {
     top: 0 !important;
 }
 
-.skiptranslate {
+.goog-te-banner-frame {
   display: none !important;
 }
-body {
-  top: 0px !important;
-}
+
+.goog-te-gadget {
+  font-size: 0 !important;
+} 
+
 
 
 /* Ajustez la présentation sur mobile si nécessaire */

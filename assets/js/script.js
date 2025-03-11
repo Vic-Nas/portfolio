@@ -135,3 +135,4 @@ function googleTranslateElementInit() {
         autoDisplay: false,  // Désactive l'affichage automatique
     }, 'google_translate_element');
 }
+
