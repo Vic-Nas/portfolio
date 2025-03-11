@@ -16,6 +16,12 @@ body {
     top: 0 !important;
 }
 
+.skiptranslate, iframe.VIpgJd-ZVi9od-ORHb-OEVmcd {
+  display: none !important;
+}
+body {
+  top: 0px !important;
+}
 
 /* Ajustez la présentation sur mobile si nécessaire */
 @media screen and (max-width: 768px) {

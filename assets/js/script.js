@@ -136,20 +136,10 @@ function googleTranslateElementInit() {
     }, 'google_translate_element');
 }
 
-// Modification du style de l'iframe
-window.addEventListener('load', function() {
-    const observer = new MutationObserver(() => {
-        const iframe = document.querySelector('.goog-te-menu-frame');
-        if (iframe) {
-            iframe.style.setProperty('box-shadow', 'none', 'important');
-            iframe.style.setProperty('position', 'absolute', 'important');
-            iframe.style.setProperty('top', '100%', 'important');
-            iframe.style.setProperty('left', '0', 'important');
-        }
-    });
-
-    observer.observe(document.body, {
-        childList: true,
-        subtree: true
-    });
-});
+window.onload = function() {
+    // Supprime les éléments de la barre Google Translate
+    document.querySelectorAll('.skiptranslate, iframe').forEach(el => el.remove());
+    
+    // Réajuste la position du body si nécessaire
+    document.body.style.top = "0px";
+};
