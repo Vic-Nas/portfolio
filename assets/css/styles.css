@@ -11,7 +11,31 @@
     --border-radius: 5px;
     --section-padding: 3rem 0;
   }
-  
+
+/* Styles pour la bande de liens discrets */
+.hidden-links {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+    opacity: 0.3; /* rend la bande peu visible */
+    font-size: 0.7rem;
+}
+
+.hidden-links ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: inline-flex;
+    gap: 1rem;
+    justify-content: center;
+}
+
+.hidden-links a {
+    text-decoration: none;
+    color: inherit;
+}
+
   /* Reset et styles de base */
   * {
     margin: 0;
