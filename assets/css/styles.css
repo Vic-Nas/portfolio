@@ -12,15 +12,12 @@
     --section-padding: 3rem 0;
   }
 
-  .goog-te-banner-frame.skiptranslate {
-    display: none !important;
-}
 body {
     top: 0 !important;
 }
 /* Masquer la bannière Google Translate */
-body table {
-  display: none !important;
+.skiptranslate {
+  display: none;
 }
 
 /* Ajustez la présentation sur mobile si nécessaire */
