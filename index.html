@@ -371,7 +371,7 @@
                 </div>
                 
                 <div class="contact-form">
-                    <form id="contact-form">
+                    <form id="contact-form" action="https://formspree.io/f/xrbpglow" method="POST">
                         <div class="form-group">
                             <label for="name">Nom</label>
                             <input type="text" id="name" name="name" required>
@@ -379,7 +379,7 @@
                         
                         <div class="form-group">
                             <label for="email">Email</label>
-                            <input type="email" id="email" name="email" required>
+                            <input type="email" id="email" name="_replyto" required>
                         </div>
                         
                         <div class="form-group">
@@ -392,7 +392,9 @@
                             <textarea id="message" name="message" rows="5" required></textarea>
                         </div>
                         
-                        <button type="submit" class="submit-btn">Envoyer</button>
+                        <button type="submit" class="submit-btn">
+                            <i class="fas fa-paper-plane"></i> Envoyer
+                        </button>
                     </form>
                 </div>
             </div>
