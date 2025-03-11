@@ -126,3 +126,11 @@ window.addEventListener('load', function() {
         }
     }, 1000);
 });
+
+document.addEventListener("DOMContentLoaded", function() {
+    var skipElem = document.querySelector('.skiptranslate');
+    if (skipElem) {
+        skipElem.removeAttribute('style');
+        skipElem.style.display = "none";
+    }
+});
