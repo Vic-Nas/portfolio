@@ -12,26 +12,25 @@
     --section-padding: 3rem 0;
   }
 
-.translate-btn {
-    border: none;
-    background-color: #fff;
-    color: #333;
-    padding: 10px 15px;
-    margin-left: 15px;
-    font-size: 1rem;
-    cursor: pointer;
-    border-radius: 5px;
-    transition: background-color 0.3s;
+
+/* Positionnement du widget dans le header, par exemple */
+#google_translate_element {
+    position: absolute;
+    top: 10px;
+    right: 10px;
 }
 
-.translate-btn:hover {
-    background-color: #e0e0e0;
+/* Exemple de surcharge pour cacher le drapeau si besoin */
+.goog-te-combo {
+    padding: 5px;
+    font-size: 0.9rem;
 }
 
-.google-translate-widget {
-    margin: 10px;
-    text-align: right;
+/* Tentative de changement de libellé (attention, Google restreint la personnalisation) */
+.goog-logo-link {
+    display: none !important;
 }
+
 
 /* Styles pour la bande de liens discrets */
 .hidden-links {
