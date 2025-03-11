@@ -14,28 +14,7 @@
 
 /* Styles pour la bande de liens discrets */
 .hidden-links {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    text-align: center;
-    opacity: 0.3;
-    font-size: 0.7rem;
-    z-index: 1000;
-}
-
-.hidden-links ul {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    display: inline-flex;
-    gap: 1rem;
-    justify-content: center;
-}
-
-.hidden-links a {
-    text-decoration: none;
-    color: inherit;
+    display: none;
 }
 
   /* Reset et styles de base */
