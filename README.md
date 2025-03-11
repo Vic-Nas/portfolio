@@ -1,4 +1,0 @@
-- 👋 Hi, I’m Victorio N;
-- 👀 I’m interested in new technologies
-- 🌱 I’m currently learning IT engineering
-- 📫 How to reach me nasci.victorio@gmail.com
