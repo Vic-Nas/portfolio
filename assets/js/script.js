@@ -111,6 +111,18 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 function googleTranslateElementInit() {
     new google.translate.TranslateElement({
         pageLanguage: 'fr',
+        includedLanguages: 'en,fr,it',
         layout: google.translate.TranslateElement.InlineLayout.SIMPLE
     }, 'google_translate_element');
 }
+
+window.addEventListener('load', function() {
+    setTimeout(function() {
+        // Cette technique repose sur la structure interne du widget qui peut changer
+        var gtCombo = document.querySelector('.goog-te-combo');
+        if(gtCombo) {
+            // Par exemple, modifier l'option par défaut (bien que cela reste limité)
+            gtCombo.options[0].text = 'Choisissez votre langue';
+        }
+    }, 1000);
+});

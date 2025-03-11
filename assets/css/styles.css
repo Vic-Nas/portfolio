@@ -14,9 +14,11 @@
 
 
   .language-switcher {
-    margin-left: auto;
-    display: flex;
-    align-items: center;
+    position: absolute;
+    top: 50%;
+    right: 20px;
+    transform: translateY(-50%);
+    /* Vous pouvez ajouter d'autres styles (padding, background, etc.) */
 }
 
 /* Ajustez la présentation sur mobile si nécessaire */
