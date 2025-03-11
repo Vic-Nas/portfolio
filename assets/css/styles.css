@@ -12,14 +12,13 @@
     --section-padding: 3rem 0;
   }
 
-
-  .language-switcher {
-    position: absolute;
-    top: 50%;
-    right: 20px;
-    transform: translateY(-50%);
-    /* Vous pouvez ajouter d'autres styles (padding, background, etc.) */
+  .goog-te-banner-frame.skiptranslate {
+    display: none !important;
 }
+body {
+    top: 0 !important;
+}
+
 
 /* Ajustez la présentation sur mobile si nécessaire */
 @media screen and (max-width: 768px) {
@@ -103,10 +102,18 @@
   }
   
   .header-content {
+    position: relative;
     display: flex;
-    justify-content: space-between;
     align-items: center;
-  }
+    justify-content: space-between;
+}
+.language-switcher {
+    position: absolute;
+    top: 50%;
+    right: 20px;
+    transform: translateY(-50%);
+    z-index: 1000; /* Pour qu'il se superpose correctement */
+}
   
   .logo {
     font-size: 1.5rem;
