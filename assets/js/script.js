@@ -107,32 +107,3 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         }
     });
 });
-
-
-var isTranslated = false;
-        function googleTranslateElementInit() {
-            new google.translate.TranslateElement({
-                pageLanguage: 'fr',
-                autoDisplay: false
-            }, 'google_translate_element');
-        }
-        function loadGoogleTranslate() {
-            if (!document.getElementById('google_translate_script')) {
-                var script = document.createElement('script');
-                script.id = 'google_translate_script';
-                script.type = 'text/javascript';
-                script.src = '//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit';
-                document.body.appendChild(script);
-            }
-        }
-        document.getElementById('translateBtn').addEventListener('click', function() {
-            if (!isTranslated) {
-                loadGoogleTranslate();
-                document.getElementById('google_translate_element').style.display = 'block';
-                this.textContent = 'Français (annuler)';
-                isTranslated = true;
-            } else {
-                // Pour rétablir la version originale, on recharge la page
-                location.reload();
-            }
-        });
