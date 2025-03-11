@@ -127,23 +127,29 @@ window.addEventListener('load', function() {
     }, 1000);
 });
 
-document.addEventListener("DOMContentLoaded", function() {
-    // Fonction pour supprimer l'élément skiptranslate
-    function removeSkipTranslate() {
-        var skipElem = document.querySelector('.skiptranslate');
-        if (skipElem) {
-            skipElem.remove();
+function googleTranslateElementInit() {
+    new google.translate.TranslateElement({
+        pageLanguage: 'fr',
+        includedLanguages: 'en,fr,it',
+        layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
+        autoDisplay: false,  // Désactive l'affichage automatique
+    }, 'google_translate_element');
+}
+
+// Modification du style de l'iframe
+window.addEventListener('load', function() {
+    const observer = new MutationObserver(() => {
+        const iframe = document.querySelector('.goog-te-menu-frame');
+        if (iframe) {
+            iframe.style.setProperty('box-shadow', 'none', 'important');
+            iframe.style.setProperty('position', 'absolute', 'important');
+            iframe.style.setProperty('top', '100%', 'important');
+            iframe.style.setProperty('left', '0', 'important');
         }
-    }
-
-    // Observer les mutations sur le body pour détecter l'injection de l'élément
-    var observer = new MutationObserver(function(mutations) {
-        mutations.forEach(function(mutation) {
-            removeSkipTranslate();
-        });
     });
-    observer.observe(document.body, { childList: true, subtree: true });
 
-    // Appel initial au cas où l'élément serait déjà présent
-    removeSkipTranslate();
+    observer.observe(document.body, {
+        childList: true,
+        subtree: true
+    });
 });
