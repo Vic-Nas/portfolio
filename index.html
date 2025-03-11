@@ -1154,8 +1154,13 @@
       // GitHub OAuth Configuration
 
       const clientId = "Ov23liawpWheSOOk9w9D";
-      const redirectUri = "https://vic-nas.github.io/portfolio";
+      const redirectUri = window.location.origin + window.location.pathname;
       const scope = "user:email";
+      
+      function handleGitHubLogin() {
+        const authUrl = `https://github.com/login/oauth/authorize?client_id=${clientId}&redirect_uri=${encodeURIComponent(redirectUri)}&scope=${encodeURIComponent(scope)}`;
+        window.location.href = authUrl;
+      }
       
       // Database (localStorage)
       const DB_KEYS = {
