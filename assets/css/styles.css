@@ -12,8 +12,6 @@
     --section-padding: 3rem 0;
   }
 
-/* ...existing code... */
-
 .translate-btn {
     border: none;
     background-color: #fff;
@@ -35,7 +33,6 @@
     text-align: right;
 }
 
-/* ...existing code... */
 /* Styles pour la bande de liens discrets */
 .hidden-links {
     display: none;
