@@ -12,6 +12,30 @@
     --section-padding: 3rem 0;
   }
 
+/* ...existing code... */
+
+.translate-btn {
+    border: none;
+    background-color: #fff;
+    color: #333;
+    padding: 10px 15px;
+    margin-left: 15px;
+    font-size: 1rem;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.translate-btn:hover {
+    background-color: #e0e0e0;
+}
+
+.google-translate-widget {
+    margin: 10px;
+    text-align: right;
+}
+
+/* ...existing code... */
 /* Styles pour la bande de liens discrets */
 .hidden-links {
     display: none;
