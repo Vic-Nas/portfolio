@@ -128,9 +128,22 @@ window.addEventListener('load', function() {
 });
 
 document.addEventListener("DOMContentLoaded", function() {
-    var skipElem = document.querySelector('.skiptranslate');
-    if (skipElem) {
-        skipElem.removeAttribute('style');
-        skipElem.style.display = "none";
+    // Fonction pour supprimer l'élément skiptranslate
+    function removeSkipTranslate() {
+        var skipElem = document.querySelector('.skiptranslate');
+        if (skipElem) {
+            skipElem.remove();
+        }
     }
+
+    // Observer les mutations sur le body pour détecter l'injection de l'élément
+    var observer = new MutationObserver(function(mutations) {
+        mutations.forEach(function(mutation) {
+            removeSkipTranslate();
+        });
+    });
+    observer.observe(document.body, { childList: true, subtree: true });
+
+    // Appel initial au cas où l'élément serait déjà présent
+    removeSkipTranslate();
 });
