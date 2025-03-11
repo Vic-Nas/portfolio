@@ -1247,16 +1247,12 @@
           window.history.replaceState({}, document.title, newUrl);
           
           try {
-            // In a real implementation, this should be handled by a server-side component
-            // For this demo, we'll simulate a successful auth without revealing secrets
-            // Normally we would call a backend endpoint to handle the OAuth token exchange
-            
             // Simulate fetching the GitHub user data
             // In a real app this would happen on the server after exchanging the code for a token
             const githubUser = {
               login: "Vic-Nas",
               name: "Victorio Nascimento",
-              avatar_url: "https://github.com/Vic-Nas.png"
+              avatar_url: "https://github.com/Vic-Nas/portfollio/blob/main/favicon.ico"
             };
             
             // Store auth data
