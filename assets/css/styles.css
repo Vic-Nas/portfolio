@@ -15,10 +15,7 @@
 body {
     top: 0 !important;
 }
-/* Masquer la bannière Google Translate */
-.skiptranslate {
-  display: none;
-}
+
 
 /* Ajustez la présentation sur mobile si nécessaire */
 @media screen and (max-width: 768px) {
