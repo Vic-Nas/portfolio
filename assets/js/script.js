@@ -114,11 +114,7 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 // Mise à jour dynamique du texte du bouton traduction
 window.onload = function () {
     const translateBtn = document.getElementById("translate-btn").querySelector("a");
-    if (window.location.href.startsWith("https://vic-nas.github.io/portfolio")) {
-        translateBtn.textContent = "Translate";
-        translateBtn.href = "https://vic--nas-github-io.translate.goog/portfolio/?_x_tr_sl=fr&_x_tr_tl=en&_x_tr_hl=en&_x_tr_pto=wapp"
-    } else {
-        translateBtn.textContent = "Original";
+    if (translateBtn.textContent = "Original") {
         translateBtn.href = "https://vic-nas.github.io/portfolio"
     }
 };
