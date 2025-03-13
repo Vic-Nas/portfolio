@@ -110,30 +110,15 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 
 
 
-function toggleTranslation() {
-    const currentUrl = window.location.href;
-    const baseUrl = "https://vic-nas.github.io/portfolio/";
-    const translatedBaseUrl = "https://vic--nas-github-io.translate.goog/portfolio/";
-
-    if (currentUrl.startsWith(translatedBaseUrl)) {
-        // Redirige vers l'URL originale en supprimant le préfixe de traduction
-        const originalUrl = currentUrl.replace(translatedBaseUrl, baseUrl);
-        window.location.href = originalUrl;
-    } else if (currentUrl.startsWith(baseUrl)) {
-        // Redirige vers la version traduite en adaptant l'URL actuelle
-        const translatedUrl = currentUrl.replace(baseUrl, translatedBaseUrl) + 
-            (currentUrl.includes('?') ? '&' : '?') + 
-            '_x_tr_sl=fr&_x_tr_tl=en&_x_tr_hl=en&_x_tr_pto=wapp';
-        window.location.href = translatedUrl;
-    }
-}
 
 // Mise à jour dynamique du texte du bouton traduction
 window.onload = function () {
     const translateBtn = document.getElementById("translate-btn").querySelector("a");
-    if (window.location.href.startsWith("https://vic-nas.github.io/portfolio/")) {
+    if (window.location.href.startsWith("https://vic-nas.github.io/portfolio")) {
         translateBtn.textContent = "Translate";
+        translateBtn.href = "https://vic--nas-github-io.translate.goog/portfolio/?_x_tr_sl=fr&_x_tr_tl=en&_x_tr_hl=en&_x_tr_pto=wapp"
     } else {
         translateBtn.textContent = "Original";
+        translateBtn.href = "https://vic-nas.github.io/portfolio"
     }
 };
