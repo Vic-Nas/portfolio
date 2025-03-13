@@ -31,6 +31,21 @@ body {
   z-index: 1000;          /* Au-dessus des autres éléments */
 }
 
+#translate-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #FF5722;
+  color: #fff;
+  padding: 8px 15px;
+  border-radius: 20px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  font-weight: bold;
+  transition: var(--transition);
+  margin-left: 15px; /* Espacement par rapport aux éléments adjacents */
+}
+
 #translate-btn a {
   text-decoration: none;
   color: inherit;
@@ -42,11 +57,28 @@ body {
   border: 2px solid #FF5722;
 }
 
-/* Ajustez la présentation sur mobile si nécessaire */
+/* Modification de la structure du header pour inclure le bouton */
+.header-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.navigation-container {
+  display: flex;
+  align-items: center;
+}
+
+/* Ajustement pour mobile */
 @media screen and (max-width: 768px) {
-    .language-switcher {
-        margin-top: 10px;
-    }
+  #translate-btn {
+    position: absolute;
+    top: 20px;
+    right: 70px; /* Espace pour le bouton de menu mobile */
+    margin: 0;
+    padding: 6px 12px;
+    font-size: 0.9rem;
+  }
 }
 
 /* Exemple de surcharge pour cacher le drapeau si besoin */
