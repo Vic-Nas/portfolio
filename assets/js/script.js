@@ -108,31 +108,32 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     });
 });
 
-function googleTranslateElementInit() {
-    new google.translate.TranslateElement({
-        pageLanguage: 'fr',
-        includedLanguages: 'en,fr,it',
-        layout: google.translate.TranslateElement.InlineLayout.SIMPLE
-    }, 'google_translate_element');
+
+
+function toggleTranslation() {
+    const currentUrl = window.location.href;
+    const baseUrl = "https://vic--nas-github-io/portfolio/";
+    const translatedBaseUrl = "https://vic--nas-github-io.translate.goog/portfolio/";
+
+    if (currentUrl.startsWith(translatedBaseUrl)) {
+        // Redirige vers l'URL originale en supprimant le préfixe de traduction
+        const originalUrl = currentUrl.replace(translatedBaseUrl, baseUrl);
+        window.location.href = originalUrl;
+    } else if (currentUrl.startsWith(baseUrl)) {
+        // Redirige vers la version traduite en adaptant l'URL actuelle
+        const translatedUrl = currentUrl.replace(baseUrl, translatedBaseUrl) + 
+            (currentUrl.includes('?') ? '&' : '?') + 
+            '_x_tr_sl=fr&_x_tr_tl=en&_x_tr_hl=en&_x_tr_pto=wapp';
+        window.location.href = translatedUrl;
+    }
 }
 
-window.addEventListener('load', function() {
-    setTimeout(function() {
-        // Cette technique repose sur la structure interne du widget qui peut changer
-        var gtCombo = document.querySelector('.goog-te-combo');
-        if(gtCombo) {
-            // Par exemple, modifier l'option par défaut (bien que cela reste limité)
-            gtCombo.options[0].text = 'Choisissez votre langue';
-        }
-    }, 1000);
-});
-
-function googleTranslateElementInit() {
-    new google.translate.TranslateElement({
-        pageLanguage: 'fr',
-        includedLanguages: 'en,fr,it',
-        layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
-        autoDisplay: false,  // Désactive l'affichage automatique
-    }, 'google_translate_element');
-}
-
+// Mise à jour dynamique du texte du bouton
+window.onload = function () {
+    const translateBtn = document.getElementById("translate-btn").querySelector("a");
+    if (window.location.href.startsWith("https://vic--nas-github-io.translate.goog/portfolio/")) {
+        translateBtn.textContent = "Version originale";
+    } else {
+        translateBtn.textContent = "Traduire";
+    }
+};
