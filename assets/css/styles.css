@@ -16,10 +16,13 @@ body {
     top: 0 !important;
 }
 
+
+/* Correction du bouton de traduction */
 #translate-btn {
-  position: fixed; /* Fixé par rapport à la fenêtre de visualisation */
-  top: 15px;
+  position: absolute;
+  top: 50%;
   right: 20px;
+  transform: translateY(-50%);
   background-color: #FF5722;
   color: #fff;
   padding: 8px 15px;
@@ -27,41 +30,40 @@ body {
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
   cursor: pointer;
   font-weight: bold;
-  z-index: 1001; /* Assurez-vous qu'il est au-dessus de tout, y compris le header */
-  border: none;
-}
-
-/* Modification de la structure du header pour inclure le bouton */
-.header-content {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+  z-index: 1000;
+  margin: 0; /* Annulation des marges précédentes qui causaient un problème */
+  border: 2px solid transparent; /* Pour éviter le saut lors du hover */
 }
 
 #translate-btn a {
   text-decoration: none;
   color: inherit;
+  display: block; /* Assure que tout le bouton est cliquable */
 }
 
 #translate-btn:hover {
   background-color: #fff;
   color: #FF5722;
   border: 2px solid #FF5722;
-  padding: 6px 13px; /* Ajusté pour compenser la bordure */
 }
 
-/* Pour s'assurer que le header n'interfère pas */
-header .container {
-  position: relative;
+/* Ajustez l'espace pour la navigation afin qu'elle ne chevauche pas le bouton */
+nav ul {
+  display: flex;
+  gap: 1.5rem;
+  margin-right: 80px; /* Espace pour le bouton de traduction */
 }
 
 /* Ajustement pour mobile */
 @media screen and (max-width: 768px) {
   #translate-btn {
-    top: 10px;
-    right: 70px; /* Laisse de l'espace pour le bouton menu mobile */
-    padding: 6px 12px;
-    font-size: 0.9rem;
+    top: 15px;
+    right: 70px; /* Espace pour le bouton menu hamburger */
+    transform: none; /* Pas besoin de centrer verticalement sur mobile */
+  }
+  
+  nav ul {
+    margin-right: 0; /* Pas besoin de marge sur mobile car la nav est déjà en colonne */
   }
 }
 /* Exemple de surcharge pour cacher le drapeau si besoin */
