@@ -114,7 +114,8 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 // Mise à jour dynamique du texte du bouton traduction
 window.onload = function () {
     const translateBtn = document.getElementById("translate-btn").querySelector("a");
-    if (translateBtn.textContent == "Original") {
-        translateBtn.href = "https://vic-nas.github.io/portfolio"
+    if (window.location.href.startsWith("https://vic--nas")){
+        translateBtn.textContent = "Original";
+        translateBtn.href = "https://vic-nas.github.io/portfolio";
     }
 };
