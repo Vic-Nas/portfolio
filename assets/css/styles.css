@@ -17,13 +17,13 @@ body {
 }
 
 
-/* Positionnement du bouton de traduction */
+/* Positionnement du bouton de traduction dans la barre de navigation */
 #translate-btn {
-  position: fixed;
+  position: absolute; /* Au lieu de fixed */
   top: 50%;
   right: 20px;
   transform: translateY(-50%);
-  z-index: 101; /* Légèrement supérieur au z-index du header */
+  z-index: 101;
   background-color: var(--primary-color);
   color: white;
   padding: 8px 12px;
@@ -39,23 +39,29 @@ body {
   transform: translateY(-50%) scale(1.05);
 }
 
-/* Ajustez l'espace pour la navigation pour éviter le chevauchement */
+/* Assurez-vous que le header a une position relative pour le positionnement absolu */
+.header-content {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* Ajustez l'espace pour la navigation */
 nav ul {
   display: flex;
   gap: 1.5rem;
   margin-right: 60px; /* Espace pour le bouton de traduction */
 }
 
-/* Ajustement pour le mode mobile */
+/* Ajustement pour mobile */
 @media screen and (max-width: 768px) {
   #translate-btn {
-    position: fixed;
     top: 15px;
     right: 70px; /* Espace pour le bouton menu hamburger */
     transform: none; /* Pas besoin de centrer verticalement sur mobile */
   }
 }
-
 /* Exemple de surcharge pour cacher le drapeau si besoin */
 .goog-te-combo {
     padding: 5px;
