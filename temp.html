@@ -1,248 +1,556 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="generator" content="pandoc" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
-  <title>-</title>
-  <style>
-    html {
-      line-height: 1.5;
-      font-family: Georgia, serif;
-      font-size: 20px;
-      color: #1a1a1a;
-      background-color: #fdfdfd;
-    }
-    body {
-      margin: 0 auto;
-      max-width: 36em;
-      padding-left: 50px;
-      padding-right: 50px;
-      padding-top: 50px;
-      padding-bottom: 50px;
-      hyphens: auto;
-      overflow-wrap: break-word;
-      text-rendering: optimizeLegibility;
-      font-kerning: normal;
-    }
-    @media (max-width: 600px) {
-      body {
-        font-size: 0.9em;
-        padding: 1em;
-      }
-      h1 {
-        font-size: 1.8em;
-      }
-    }
-    @media print {
-      body {
-        background-color: transparent;
-        color: black;
-        font-size: 12pt;
-      }
-      p, h2, h3 {
-        orphans: 3;
-        widows: 3;
-      }
-      h2, h3, h4 {
-        page-break-after: avoid;
-      }
-    }
-    p {
-      margin: 1em 0;
-    }
-    a {
-      color: #1a1a1a;
-    }
-    a:visited {
-      color: #1a1a1a;
-    }
-    img {
-      max-width: 100%;
-    }
-    h1, h2, h3, h4, h5, h6 {
-      margin-top: 1.4em;
-    }
-    h5, h6 {
-      font-size: 1em;
-      font-style: italic;
-    }
-    h6 {
-      font-weight: normal;
-    }
-    ol, ul {
-      padding-left: 1.7em;
-      margin-top: 1em;
-    }
-    li > ol, li > ul {
-      margin-top: 0;
-    }
-    blockquote {
-      margin: 1em 0 1em 1.7em;
-      padding-left: 1em;
-      border-left: 2px solid #e6e6e6;
-      color: #606060;
-    }
-    code {
-      font-family: Menlo, Monaco, 'Lucida Console', Consolas, monospace;
-      font-size: 85%;
-      margin: 0;
-    }
-    pre {
-      margin: 1em 0;
-      overflow: auto;
-    }
-    pre code {
-      padding: 0;
-      overflow: visible;
-      overflow-wrap: normal;
-    }
-    .sourceCode {
-     background-color: transparent;
-     overflow: visible;
-    }
-    hr {
-      background-color: #1a1a1a;
-      border: none;
-      height: 1px;
-      margin: 1em 0;
-    }
-    table {
-      margin: 1em 0;
-      border-collapse: collapse;
-      width: 100%;
-      overflow-x: auto;
-      display: block;
-      font-variant-numeric: lining-nums tabular-nums;
-    }
-    table caption {
-      margin-bottom: 0.75em;
-    }
-    tbody {
-      margin-top: 0.5em;
-      border-top: 1px solid #1a1a1a;
-      border-bottom: 1px solid #1a1a1a;
-    }
-    th {
-      border-top: 1px solid #1a1a1a;
-      padding: 0.25em 0.5em 0.25em 0.5em;
-    }
-    td {
-      padding: 0.125em 0.5em 0.25em 0.5em;
-    }
-    header {
-      margin-bottom: 4em;
-      text-align: center;
-    }
-    #TOC li {
-      list-style: none;
-    }
-    #TOC ul {
-      padding-left: 1.3em;
-    }
-    #TOC > ul {
-      padding-left: 0;
-    }
-    #TOC a:not(:hover) {
-      text-decoration: none;
-    }
-    code{white-space: pre-wrap;}
-    span.smallcaps{font-variant: small-caps;}
-    span.underline{text-decoration: underline;}
-    div.column{display: inline-block; vertical-align: top; width: 50%;}
-    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
-    ul.task-list{list-style: none;}
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Oslo Trip Presentation</title>
+    <style>
+        /* Global Styles */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f8ff;
+            color: #333;
+        }
+        
+        .presentation {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            background-color: #fff;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+        }
+
+        section {
+            padding: 30px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            background-size: cover;
+            background-position: center;
+            min-height: 500px;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            border-bottom: 3px solid #3d7b9e;
+        }
+
+        h1 {
+            font-size: 36px;
+            color: #1c5d8a;
+            margin-bottom: 20px;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+        }
+
+        h2 {
+            font-size: 28px;
+            color: #2980b9;
+            margin-bottom: 15px;
+        }
+
+        h3 {
+            font-size: 22px;
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+
+        p {
+            font-size: 18px;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .activity {
+            background-color: rgba(255, 255, 255, 0.85);
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            border-left: 4px solid #3498db;
+        }
+
+        .image-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-top: 20px;
+            justify-content: center;
+        }
+
+        .image-card {
+            width: 280px;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            background-color: white;
+            transition: transform 0.3s;
+        }
+
+        .image-card:hover {
+            transform: scale(1.03);
+        }
+
+        .image-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .image-caption {
+            padding: 10px;
+            text-align: center;
+            font-size: 14px;
+            color: #555;
+        }
+
+        .cost {
+            font-weight: bold;
+            color: #e74c3c;
+        }
+
+        .address {
+            font-style: italic;
+            color: #7f8c8d;
+            margin-top: 5px;
+            font-size: 16px;
+        }
+
+        /* Table Styles */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background-color: white;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        th, td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #3498db;
+            color: white;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f9ff;
+        }
+
+        tr:hover {
+            background-color: #e9f5ff;
+        }
+
+        /* Cover slide */
+        .cover {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.3)), url('/api/placeholder/1200/800');
+            color: white;
+            text-align: center;
+            justify-content: center;
+            align-items: center;
+            padding: 100px 30px;
+        }
+
+        .cover h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .cover p {
+            font-size: 24px;
+            max-width: 800px;
+            margin: 0 auto;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+        }
+
+        /* Conclusion slide */
+        .conclusion {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.4)), url('/api/placeholder/1200/800');
+            color: white;
+        }
+
+        .conclusion-content {
+            background-color: rgba(0, 0, 0, 0.6);
+            padding: 30px;
+            border-radius: 10px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .conclusion h1, .conclusion h2, .conclusion h3 {
+            color: white;
+        }
+
+        .highlight {
+            background-color: #f1c40f;
+            color: #2c3e50;
+            padding: 3px 6px;
+            border-radius: 4px;
+            font-weight: bold;
+        }
+
+        .budget-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px dashed #ccc;
+        }
+
+        .budget-total {
+            font-weight: bold;
+            color: #e74c3c;
+            border-top: 2px solid #333;
+            padding-top: 10px;
+            margin-top: 10px;
+        }
+    </style>
 </head>
 <body>
-<h1 id="demo-exceptions">Demo Exceptions</h1>
-<h2 id="partie-1">Partie 1</h2>
-<p>Dans cette partie, nous allons manipuler les exceptions : les buts
-sont de savoir comment gérer les blocs <code>try-catch</code>, gérer les
-<code>Exception</code>s en chaîne, et créer sa propre
-<code>Exception</code>.</p>
-<p>Nous utilisons le package <code>exceptions</code> de l’archive
-importée.</p>
-<h3 id="a.">A.</h3>
-<p>Compléter la classe <code>Exception2</code> en attrapant le plus
-possible d’exceptions. Créer un array de <code>String</code>s
-<code>testArgs</code> contenant les quatre éléments suivants :
-<code>"1"</code>, <code>"0"</code>, <code>"Except"</code>, et
-<code>"Test"</code>.</p>
-<ol type="1">
-<li>Pour l’instant ne pas toucher aux méthodes <code>effetDomino</code>
-1, 2, 3 et <code>lanceUneException()</code>.</li>
-<li>Dans le <code>main</code>:</li>
-</ol>
-<ul>
-<li>Appeler la méthode <code>StringToInt</code> avec
-<code>testArgs[0]</code></li>
-<li>Appeler la méthode <code>getInverse</code> avec
-<code>Integer.parseInt(testArgs[1])</code></li>
-<li>Créer un objet de type <code>Exception2</code> (avec un
-<code>String testArgs[2]</code> en paramètre) et appeler
-<code>getLength</code></li>
-<li>Apppeler la méthode <code>effectuerChangements</code> avec comme
-paramètre un nouvel objet de type <code>Exception1</code></li>
-</ul>
-<h3 id="b.">B.</h3>
-<p>Créer la classe <code>DivideByZero</code> qui étend la classe
-<code>ArithmeticException</code>. Cette classe définit l’exception qui
-consiste à diviser par zéro.</p>
-<ul>
-<li>Créer son constructeur</li>
-<li>Créer sa méthode <code>message()</code> qui affiche
-<code>"Vous êtes bien dans la classe DivideByZero"</code></li>
-</ul>
-<h3 id="c.">C.</h3>
-<p>Modifier la méthode <code>lanceUneException</code> pour qu’elle lance
-une exception de type <code>DivideByZero</code>. Les méthodes
-<code>effetDomino</code> 1 et 2 tenteront de l’attraper et d’appeler la
-méthode <code>message()</code>.</p>
-<h3 id="d.">D.</h3>
-<p>Tenter d’accéder à <code>testArgs[3]</code></p>
-<h3 id="e.">E.</h3>
-<p>Ouvrir la classe <code>Exception1</code>. Que se passe-t-il si :</p>
-<ul>
-<li><code>dummy()</code> lance une <code>NullPointerException</code>
-?</li>
-<li><code>dummy()</code> lance une <code>ArithmeticException</code>
-?</li>
-<li><code>dummy()</code> lance une <code>IOException</code> ?</li>
-<li><code>dummy()</code> lance une
-<code>ArrayIndexOutOfBoundException</code> ?</li>
-<li><code>dummy()</code> réussit à aller au bout ?</li>
-</ul>
-<p>Faire les tests nécessaires.</p>
-<h2 id="partie-2">Partie 2</h2>
-<p>Dans cette partie, nous nous intéressons à un outil prenant en entrée
-des notes manuscrites (donc écrites sous forme de <code>String</code>),
-et nous allons essayer de traiter les types d’erreur existants pouvant
-apparaître pendant l’utilisation de cet outil.</p>
-<h3 id="a.-1">A.</h3>
-<p>Ecrivez dans une classe <code>Average</code> une méthode
-<code>fromStringArray()</code> qui demande à l’utilisateur d’entrer une
-liste de notes, puis calcule et retourne la moyenne des notes
-entrées.</p>
-<p>Vous utiliserez la méthode <code>Integer.parseInt</code> qui
-transforme une chaine de caractères en entier et lève une exception
-<code>NumberFormatException</code> si la chaîne n’est pas un entier.</p>
-<h3 id="b.-1">B.</h3>
-<p>Que se passe-t-il lorsque l’on exécute le programme avec la liste
-<code>"1" "2" "30" "1111"</code> ?</p>
-<p>Avec la liste <code>"1" "2" "30" "1111K"</code> ?</p>
-<p>Avec une liste vide ?</p>
-<h3 id="c.-1">C.</h3>
-<p>On souhaite maintenant que lorsqu’une note non entière est entrée, le
-programme ignore cette note et affiche le message
-“<code>erreur la note [NOTE] n'est pas entière"</code>, où
-<code>[NOTE]</code> est la note qui pose problème. De plus si aucune
-note valide n’est entrée, le message
-<code>"Il faut au moins une note"</code> s’affiche.</p>
-<h3 id="d.-1">D.</h3>
-<p>Écrivez une classe <code>NoteNonConformeException</code> dérivée de
-la classe <code>Exception</code> et qui affiche
-<code>"NoteNonConformeException: La note [NOTE] est non conforme (une note entre 0 et 20 est attendue)"</code>
-où <code>[NOTE]</code> est la note problématique.</p>
+    <div class="presentation">
+        <!-- Cover Slide -->
+        <section class="cover">
+            <h1>Exploring Oslo</h1>
+            <p>A Journey Through Norway's Capital City</p>
+            <p>April 5-10, 2025</p>
+        </section>
+
+        <!-- Day 1: Saturday, April 5 -->
+        <section style="background-color: #e8f4f8;">
+            <h1>Day 1: Saturday, April 5</h1>
+            <div class="activity">
+                <h2>Arrival & First Impressions</h2>
+                <p>Our adventure begins with arrival in Oslo at 11:50 AM, one of Europe's greenest capitals. By 12:50 PM, we reach our accommodation at Agshana's family home.</p>
+                <p class="address">Oslo, Norway</p>
+            </div>
+
+            <div class="activity">
+                <h2>Evening Dinner at Jimmy's Restaurant</h2>
+                <p>After settling in, we'll enjoy our first taste of Norwegian cuisine at Jimmy's Restaurant.</p>
+                <p class="cost">Budget: £50</p>
+                <p class="address">Leirfallsgata 6, Oslo</p>
+            </div>
+
+            <div class="activity">
+                <h2>Ekeberg Sculpture Park</h2>
+                <p>We'll end our first day with a visit to the beautiful Ekeberg Park, a cultural heritage site combining nature, history and art with stunning views over Oslo.</p>
+                <p class="address">Ekeberg Park, Oslo, Norway</p>
+            </div>
+
+            <div class="image-container">
+                <div class="image-card">
+                    <img src="/api/placeholder/400/300" alt="Oslo panorama">
+                    <div class="image-caption">Oslo Cityscape</div>
+                </div>
+                <div class="image-card">
+                    <img src="/api/placeholder/400/300" alt="Ekeberg Sculpture Park">
+                    <div class="image-caption">Ekeberg Sculpture Park</div>
+                </div>
+                <div class="image-card">
+                    <img src="/api/placeholder/400/300" alt="Jimmy's Restaurant">
+                    <div class="image-caption">Traditional Norwegian Cuisine</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Day 2: Sunday, April 6 -->
+        <section style="background-color: #f0e8f8;">
+            <h1>Day 2: Sunday, April 6</h1>
+            <div class="activity">
+                <h2>Morning with Agshana's Family</h2>
+                <p>The morning is dedicated to spending quality time with Agshana's family, playing board games and watching films together.</p>
+            </div>
+
+            <div class="activity">
+                <h2>Norwegian Folk Museum</h2>
+                <p>In the afternoon, we'll visit the Norsk Folk Museum, an open-air museum presenting 155 traditional houses from different regions of Norway. The museum offers numerous activities including folk dances, traditional pancake preparation, crafts, farm animals, staff in traditional costumes, and more.</p>
+                <p class="cost">Entry fee: £17 (€8.50 per person)</p>
+                <p class="address">Museumsveien 10, 0287 Oslo, Norway</p>
+            </div>
+
+            <div class="activity">
+                <h2>Oslo Opera House</h2>
+                <p>In the evening, we'll discover the iconic Oslo Opera House, a modern architectural masterpiece that appears to rise from the water.</p>
+                <p class="address">Kirsten Flagstads Plass 1, 0150 Oslo, Norway</p>
+            </div>
+
+            <div class="image-container">
+                <div class="image-card">
+                    <img src="/api/placeholder/400/300" alt="Norwegian Folk Museum">
+                    <div class="image-caption">Traditional Norwegian Architecture</div>
+                </div>
+                <div class="image-card">
+                    <img src="/api/placeholder/400/300" alt="Oslo Opera House">
+                    <div class="image-caption">The Stunning Oslo Opera House</div>
+                </div>
+                <div class="image-card">
+                    <img src="/api/placeholder/400/300" alt="Folk Museum Activities">
+                    <div class="image-caption">Cultural Activities at the Folk Museum</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Day 3: Monday, April 7 -->
+        <section style="background-color: #f8e8e8;">
+            <h1>Day 3: Monday, April 7</h1>
+            <div class="activity">
+                <h2>The National Museum of Oslo</h2>
+                <p>Our morning begins at the National Museum of Oslo, where we'll experience older and modern art, contemporary art, architecture, and design all under one roof. Don't miss "The Scream," the iconic masterpiece by Edvard Munch, symbolizing the anxiety of the human condition.</p>
+                <p class="cost">Entry fee: £9.60 (€4.80 per person)</p>
+                <p class="address">National Museum, Oslo, Norway</p>
+            </div>
+
+            <div class="activity">
+                <h2>Lunch at Street Food Hall</h2>
+                <p>After the museum, we'll enjoy a diverse culinary experience at the Street Food Hall, offering a variety of Norwegian and international cuisine.</p>
+                <p class="address">Torggata 16b, 0181 Oslo, Norway</p>
+            </div>
+
+            <div class="activity">
+                <h2>Vigeland Sculpture Park</h2>
+                <p>In the afternoon, we'll explore Vigelandsparken, a unique sculpture park showcasing the work of Gustav Vigeland with over 200 sculptures in bronze, granite, and wrought iron.</p>
+                <p class="address">Vigeland Sculpture Park, Oslo, Norway</p>
+            </div>
+
+            <div class="activity">
+                <h2>Winter Frognerparker Restaurant</h2>
+                <p>We'll end our day with dinner at Winter Frognerparker, known for its delicious pizzas and cozy atmosphere.</p>
+                <p class="cost">Budget: £40</p>
+                <p class="address">Frogner Park, Oslo, Norway</p>
+            </div>
+
+            <div class="image-container">
+                <div class="image-card">
+                    <img src="/api/placeholder/400/300" alt="The Scream by Edvard Munch">
+                    <div class="image-caption">"The Scream" by Edvard Munch</div>
+                </div>
+                <div class="image-card">
+                    <img src="/api/placeholder/400/300" alt="Vigeland Sculpture Park">
+                    <div class="image-caption">Sculptures at Vigeland Park</div>
+                </div>
+                <div class="image-card">
+                    <img src="/api/placeholder/400/300" alt="Street Food Hall">
+                    <div class="image-caption">Delicious Options at Street Food Hall</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Day 4: Tuesday, April 8 -->
+        <section style="background-color: #e8f8e8;">
+            <h1>Day 4: Tuesday, April 8</h1>
+            <div class="activity">
+                <h2>Hovedøya Island</h2>
+                <p>Today we'll take a boat to explore Hovedøya Island, often considered the most beautiful and interesting island in the Oslo archipelago. We'll enjoy nature walks, picnic, and visit the ruins of a Cistercian monastery dating back to 1147.</p>
+                <p class="cost">Boat tickets: £18 (€9 per person)<br>Picnic budget: £20 for sandwiches, drinks, and snacks</p>
+                <p class="address">Hovedøya Island, Oslo, Norway</p>
+            </div>
+
+            <div class="image-container">
+                <div class="image-card">
+                    <img src="/api/placeholder/400/300" alt="Hovedøya Island panorama">
+                    <div class="image-caption">Beautiful Hovedøya Island</div>
+                </div>
+                <div class="image-card">
+                    <img src="/api/placeholder/400/300" alt="Monastery ruins">
+                    <div class="image-caption">Ancient Cistercian Monastery Ruins</div>
+                </div>
+                <div class="image-card">
+                    <img src="/api/placeholder/400/300" alt="Beach at Hovedøya">
+                    <div class="image-caption">Beaches and Nature Trails</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Day 5: Wednesday, April 9 -->
+        <section style="background-color: #f8f8e8;">
+            <h1>Day 5: Wednesday, April 9</h1>
+            <div class="activity">
+                <h2>TusenFryd Amusement Park</h2>
+                <p>We'll spend the entire day at TusenFryd, Norway's largest amusement park, enjoying various rides and attractions from 9 AM to 6 PM.</p>
+                <p class="cost">Entry tickets: £89.38</p>
+                <p class="address">1407 Vinterbro, Norway</p>
+            </div>
+
+            <div class="image-container">
+                <div class="image-card">
+                    <img src="/api/placeholder/400/300" alt="TusenFryd park entrance">
+                    <div class="image-caption">TusenFryd Amusement Park</div>
+                </div>
+                <div class="image-card">
+                    <img src="/api/placeholder/400/300" alt="Roller coaster">
+                    <div class="image-caption">Thrilling Rides</div>
+                </div>
+                <div class="image-card">
+                    <img src="/api/placeholder/400/300" alt="Park attractions">
+                    <div class="image-caption">Fun Attractions for Everyone</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Day 6: Thursday, April 10 -->
+        <section style="background-color: #e8eaf8;">
+            <h1>Day 6: Thursday, April 10</h1>
+            <div class="activity">
+                <h2>Akershus Fortress</h2>
+                <p>On our final day, we'll visit the medieval Akershus Fortress, one of Norway's most important historical sites overlooking the fjord. We'll walk along the ramparts and enjoy magnificent views of the Oslo fjord.</p>
+                <p class="cost">Free entry</p>
+                <p class="address">0150 Oslo, Norway</p>
+            </div>
+
+            <div class="activity">
+                <h2>Oslo City Shopping Center</h2>
+                <p>In the afternoon, we'll visit Oslo City Shopping Center for some last-minute shopping and souvenirs.</p>
+                <p class="cost">Souvenirs budget: £30</p>
+                <p class="address">Stenersgata 1, 0050 Oslo, Norway</p>
+            </div>
+
+            <div class="activity">
+                <h2>Departure</h2>
+                <p>We'll head to the airport at 16:40 for our return flight, concluding our Oslo adventure.</p>
+            </div>
+
+            <div class="image-container">
+                <div class="image-card">
+                    <img src="/api/placeholder/400/300" alt="Akershus Fortress">
+                    <div class="image-caption">Historic Akershus Fortress</div>
+                </div>
+                <div class="image-card">
+                    <img src="/api/placeholder/400/300" alt="Oslo City Shopping Center">
+                    <div class="image-caption">Oslo City Shopping Center</div>
+                </div>
+                <div class="image-card">
+                    <img src="/api/placeholder/400/300" alt="View from Akershus">
+                    <div class="image-caption">Stunning Views from the Fortress</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Activity Summary Table -->
+        <section style="background-color: #f0f0f0;">
+            <h1>Trip Overview: Activities Summary</h1>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Day</th>
+                        <th>Date</th>
+                        <th>Activities</th>
+                        <th>Locations</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Day 1</td>
+                        <td>Sat, April 5</td>
+                        <td>Arrival, Dinner at Jimmy's, Ekeberg Sculpture Park</td>
+                        <td>Oslo Airport, Leirfallsgata 6, Ekeberg Park</td>
+                    </tr>
+                    <tr>
+                        <td>Day 2</td>
+                        <td>Sun, April 6</td>
+                        <td>Family time, Norwegian Folk Museum, Oslo Opera House</td>
+                        <td>Agshana's home, Museumsveien 10, Kirsten Flagstads Plass 1</td>
+                    </tr>
+                    <tr>
+                        <td>Day 3</td>
+                        <td>Mon, April 7</td>
+                        <td>National Museum, Street Food Hall, Vigeland Park, Dinner</td>
+                        <td>National Museum, Torggata 16b, Vigeland Park, Frogner Park</td>
+                    </tr>
+                    <tr>
+                        <td>Day 4</td>
+                        <td>Tue, April 8</td>
+                        <td>Hovedøya Island (boat trip, hiking, monastery ruins, beach, picnic)</td>
+                        <td>Hovedøya Island, Oslo Archipelago</td>
+                    </tr>
+                    <tr>
+                        <td>Day 5</td>
+                        <td>Wed, April 9</td>
+                        <td>Full day at TusenFryd Amusement Park</td>
+                        <td>1407 Vinterbro, Norway</td>
+                    </tr>
+                    <tr>
+                        <td>Day 6</td>
+                        <td>Thu, April 10</td>
+                        <td>Akershus Fortress, Oslo City Shopping, Departure</td>
+                        <td>0150 Oslo, Stenersgata 1, Oslo Airport</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <!-- Budget Summary -->
+        <section style="background-color: #f8f0e8;">
+            <h1>Trip Budget</h1>
+            <div style="max-width: 600px; margin: 0 auto; background-color: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+                <div class="budget-item">
+                    <span>Flight Tickets</span>
+                    <span class="cost">£491.00</span>
+                </div>
+                <div class="budget-item">
+                    <span>TusenFryd Amusement Park Tickets</span>
+                    <span class="cost">£89.38</span>
+                </div>
+                <div class="budget-item">
+                    <span>Restaurant Jimmy's</span>
+                    <span class="cost">£50.00</span>
+                </div>
+                <div class="budget-item">
+                    <span>Norwegian Folk Museum Entry</span>
+                    <span class="cost">£17.00</span>
+                </div>
+                <div class="budget-item">
+                    <span>Winter Frognerparker Restaurant</span>
+                    <span class="cost">£40.00</span>
+                </div>
+                <div class="budget-item">
+                    <span>Souvenirs</span>
+                    <span class="cost">£30.00</span>
+                </div>
+                <div class="budget-item">
+                    <span>Public Transportation Cards</span>
+                    <span class="cost">£40.00</span>
+                </div>
+                <div class="budget-item">
+                    <span>National Museum Entry</span>
+                    <span class="cost">£9.60</span>
+                </div>
+                <div class="budget-item">
+                    <span>Groceries (Picnic, Lunches)</span>
+                    <span class="cost">£50.00</span>
+                </div>
+                <div class="budget-item">
+                    <span>Hovedøya Island Boat Tickets</span>
+                    <span class="cost">£18.00</span>
+                </div>
+                <div class="budget-total">
+                    <span>TOTAL</span>
+                    <span>£834.98</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Conclusion Slide -->
+        <section class="conclusion">
+            <div class="conclusion-content">
+                <h1>Our Oslo Adventure: Highlights</h1>
+                
+                <h3>Cultural Experiences</h3>
+                <p>Oslo offered us an incredible blend of historical and modern cultural experiences. From the ancient Akershus Fortress to the contemporary Opera House, from viewing "The Scream" at the National Museum to exploring the Norwegian Folk Museum's traditional houses.</p>
+                
+                <h3>Natural Beauty</h3>
+                <p>The city's connection to nature was evident throughout our journey - from the serene Hovedøya Island with its beaches and monastery ruins to the artistic Ekeberg and Vigeland sculpture parks set in beautiful natural surroundings.</p>
+                
+                <h3>Culinary Discoveries</h3>
+                <p>Norwegian cuisine surprised us with its variety and quality, from traditional dishes at Jimmy's to international options at the Street Food Hall and pizza at Winter Frognerparker.</p>
+                
+                <h3>Oslo's Atmosphere</h3>
+                <p>What stood out most was Oslo's unique atmosphere - a perfect balance between a vibrant capital city and one of Europe's greenest urban centers. The city's commitment to accessibility, cleanliness, and preserving its natural surroundings makes it a model for sustainable urban living.</p>
+                
+                <p style="margin-top: 30px;">Our six days in Oslo gave us just a taste of what Norway has to offer, combining natural beauty, rich history, modern design, and warm hospitality into an unforgettable experience.</p>
+            </div>
+        </section>
+    </div>
 </body>
 </html>
