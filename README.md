@@ -34,6 +34,6 @@ portfolio-victorio/
 
 ## 📸 Aperçu
 
-![Aperçu du site](assets/images/profile.jpg)
+![Aperçu du site](https://vic-nas.github.io/portfolio)
 ---
 © 2025 Victorio - Tous droits réservés.
