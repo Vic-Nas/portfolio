@@ -134,6 +134,6 @@ window.onload = function () {
     if (window.location.href.startsWith("https://vic-nas.github.io/portfolio/")) {
         translateBtn.textContent = "Translate";
     } else {
-        translateBtn.textContent = "Traduire";
+        translateBtn.textContent = "Original";
     }
 };
