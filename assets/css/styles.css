@@ -17,24 +17,9 @@ body {
 }
 
 #translate-btn {
-  position: absolute;
-  top: 15x;
-  right: 15px;
-  background-color: #FF5722; /* Couleur vive pour attirer l’attention */
-  color: #fff;
-  padding: 10px 20px;
-  margin: 20px 20px 20px 20px;
-  border-radius: 20px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-  cursor: pointer;
-  font-weight: bold;
-  z-index: 1000;          /* Au-dessus des autres éléments */
-}
-
-#translate-btn {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  position: fixed; /* Fixé par rapport à la fenêtre de visualisation */
+  top: 15px;
+  right: 20px;
   background-color: #FF5722;
   color: #fff;
   padding: 8px 15px;
@@ -42,8 +27,15 @@ body {
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
   cursor: pointer;
   font-weight: bold;
-  transition: var(--transition);
-  margin-left: 15px; /* Espacement par rapport aux éléments adjacents */
+  z-index: 1001; /* Assurez-vous qu'il est au-dessus de tout, y compris le header */
+  border: none;
+}
+
+/* Modification de la structure du header pour inclure le bouton */
+.header-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 #translate-btn a {
@@ -55,32 +47,23 @@ body {
   background-color: #fff;
   color: #FF5722;
   border: 2px solid #FF5722;
+  padding: 6px 13px; /* Ajusté pour compenser la bordure */
 }
 
-/* Modification de la structure du header pour inclure le bouton */
-.header-content {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.navigation-container {
-  display: flex;
-  align-items: center;
+/* Pour s'assurer que le header n'interfère pas */
+header .container {
+  position: relative;
 }
 
 /* Ajustement pour mobile */
 @media screen and (max-width: 768px) {
   #translate-btn {
-    position: absolute;
-    top: 20px;
-    right: 70px; /* Espace pour le bouton de menu mobile */
-    margin: 0;
+    top: 10px;
+    right: 70px; /* Laisse de l'espace pour le bouton menu mobile */
     padding: 6px 12px;
     font-size: 0.9rem;
   }
 }
-
 /* Exemple de surcharge pour cacher le drapeau si besoin */
 .goog-te-combo {
     padding: 5px;
