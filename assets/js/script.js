@@ -128,7 +128,7 @@ function toggleTranslation() {
     }
 }
 
-// Mise à jour dynamique du texte du bouton
+// Mise à jour dynamique du texte du bouton traduction
 window.onload = function () {
     const translateBtn = document.getElementById("translate-btn").querySelector("a");
     if (window.location.href.startsWith("https://vic--nas-github-io.translate.goog/portfolio/")) {
