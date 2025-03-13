@@ -1,4 +1,4 @@
-# Portfolio Victorio
+# [Portfolio Victorio](https://vic-nas.github.io/portfolio)
 
 Bienvenue sur mon portfolio ! Ce projet est une page web personnelle présentant mes compétences, projets et expériences.
 
@@ -32,8 +32,4 @@ portfolio-victorio/
 - **CSS** : Mise en page et design
 - **JavaScript** : Dynamisation du site
 
-## 📸 Accéder
-
-[Portfolio](https://vic-nas.github.io/portfolio)
----
 © 2025 Victorio - Tous droits réservés.
