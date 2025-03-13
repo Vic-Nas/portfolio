@@ -17,9 +17,9 @@ body {
 }
 
 #translate-btn {
-  position: fixed;        /* Toujours visible même en scrollant */
-  top: 20px;
-  right: 20px;
+  position: absolute;
+  top: 15x;
+  right: 15px;
   background-color: #FF5722; /* Couleur vive pour attirer l’attention */
   color: #fff;
   padding: 10px 20px;
