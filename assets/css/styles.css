@@ -17,13 +17,25 @@ body {
 }
 
 
-/* Ajustez la présentation sur mobile si nécessaire */
-@media screen and (max-width: 768px) {
-    .language-switcher {
-        margin-top: 10px;
-    }
+/* Ajustez l'espace pour la navigation afin qu'elle ne chevauche pas le bouton */
+nav ul {
+  display: flex;
+  gap: 1.5rem;
+  margin-right: 80px; /* Espace pour le bouton de traduction */
 }
 
+/* Ajustement pour mobile */
+@media screen and (max-width: 768px) {
+  #translate-btn {
+    top: 15px;
+    right: 70px; /* Espace pour le bouton menu hamburger */
+    transform: none; /* Pas besoin de centrer verticalement sur mobile */
+  }
+  
+  nav ul {
+    margin-right: 0; /* Pas besoin de marge sur mobile car la nav est déjà en colonne */
+  }
+}
 /* Exemple de surcharge pour cacher le drapeau si besoin */
 .goog-te-combo {
     padding: 5px;
