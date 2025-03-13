@@ -23,6 +23,7 @@ body {
   background-color: #FF5722; /* Couleur vive pour attirer l’attention */
   color: #fff;
   padding: 10px 20px;
+  margin: 20px 20px 20px 20px;
   border-radius: 20px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
   cursor: pointer;
