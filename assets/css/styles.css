@@ -16,7 +16,30 @@ body {
     top: 0 !important;
 }
 
+#translate-btn {
+  position: fixed;        /* Toujours visible même en scrollant */
+  top: 20px;
+  right: 20px;
+  background-color: #FF5722; /* Couleur vive pour attirer l’attention */
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 20px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  font-weight: bold;
+  z-index: 1000;          /* Au-dessus des autres éléments */
+}
 
+#translate-btn a {
+  text-decoration: none;
+  color: inherit;
+}
+
+#translate-btn:hover {
+  background-color: #fff;
+  color: #FF5722;
+  border: 2px solid #FF5722;
+}
 
 /* Ajustez la présentation sur mobile si nécessaire */
 @media screen and (max-width: 768px) {
