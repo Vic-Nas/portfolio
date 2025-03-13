@@ -32,8 +32,8 @@ portfolio-victorio/
 - **CSS** : Mise en page et design
 - **JavaScript** : Dynamisation du site
 
-## 📸 Aperçu
+## 📸 Accéder
 
-![Aperçu du site](https://vic-nas.github.io/portfolio)
+[Portfolio](https://vic-nas.github.io/portfolio)
 ---
 © 2025 Victorio - Tous droits réservés.
