@@ -109,9 +109,7 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 });
 
 
-
-
-// Mise à jour dynamique du texte du bouton traduction
+// Mise à jour dynamique du texte du bouton
 window.onload = function () {
     const translateBtn = document.getElementById("translate-btn").querySelector("a");
     if (window.location.href.startsWith("https://vic--nas")){
