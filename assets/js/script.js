@@ -1,4 +1,4 @@
-// Attendre que le DOM soit chargé
+// Waiting for charging
 document.addEventListener('DOMContentLoaded', function() {
     // Menu mobile
     const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
