@@ -1,536 +1,193 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>This is Me - Jean Hossou</title>
+    <title>Solution Complète - Devoir #3 IFT1575</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Playfair+Display:wght@700&display=swap');
-        
-        :root {
-            --primary: #E63946;
-            --secondary: #008751;
-            --accent: #FC9E4F;
-            --light: #F1FAEE;
-            --dark: #1D3557;
-        }
-        
-        body {
-            font-family: 'Montserrat', sans-serif;
-            margin: 0;
-            padding: 0;
-            color: var(--dark);
-            background-color: var(--light);
-            line-height: 1.6;
-        }
-        
-        .hero {
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            position: relative;
-            color: white;
-            text-align: center;
-            padding: 0 20px;
-            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.5)), url('/api/placeholder/1200/800');
-            background-size: cover;
-            background-position: center;
-        }
-        
-        .hero h1 {
-            font-family: 'Playfair Display', serif;
-            font-size: 5rem;
-            margin-bottom: 10px;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
-        }
-        
-        .hero p {
-            font-size: 1.5rem;
-            max-width: 700px;
-            margin-bottom: 30px;
-        }
-        
-        .scroll-down {
-            position: absolute;
-            bottom: 40px;
-            font-size: 1.2rem;
-            animation: bounce 2s infinite;
-        }
-        
-        @keyframes bounce {
-            0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
-            40% {transform: translateY(-30px);}
-            60% {transform: translateY(-15px);}
-        }
-        
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 40px 20px;
-        }
-        
-        section {
-            margin-bottom: 80px;
-            position: relative;
-        }
-        
-        .section-title {
-            font-family: 'Playfair Display', serif;
-            font-size: 2.5rem;
-            color: var(--primary);
-            margin-bottom: 30px;
-            display: inline-block;
-            position: relative;
-        }
-        
-        .section-title::after {
-            content: '';
-            position: absolute;
-            bottom: -10px;
-            left: 0;
-            width: 100px;
-            height: 4px;
-            background-color: var(--secondary);
-        }
-        
-        .video-container {
-            position: relative;
-            padding-bottom: 56.25%;
-            height: 0;
-            overflow: hidden;
-            max-width: 100%;
-            margin: 30px 0;
-            border-radius: 10px;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-        }
-        
-        .video-container img {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-        
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 30px;
-            margin: 40px 0;
-        }
-        
-        .card {
-            background: white;
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-        
-        .card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
-        }
-        
-        .card img {
-            width: 100%;
-            height: 220px;
-            object-fit: cover;
-        }
-        
-        .card-content {
-            padding: 20px;
-        }
-        
-        .card-title {
-            font-size: 1.4rem;
-            margin-bottom: 10px;
-            color: var(--primary);
-        }
-        
-        .quote {
-            background-color: var(--secondary);
-            color: white;
-            padding: 60px 40px;
-            text-align: center;
-            margin: 60px 0;
-            border-radius: 10px;
-        }
-        
-        .quote p {
-            font-size: 1.8rem;
-            font-style: italic;
-            max-width: 800px;
-            margin: 0 auto;
-        }
-        
-        .comparison {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin: 40px 0;
-        }
-        
-        .comparison-item {
-            flex: 1;
-            text-align: center;
-            padding: 20px;
-        }
-        
-        .comparison-bar {
-            height: 40px;
-            background-color: var(--secondary);
-            margin-top: 20px;
-            border-radius: 20px;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .comparison-result {
-            position: absolute;
-            right: 20px;
-            top: 50%;
-            transform: translateY(-50%);
-            color: white;
-            font-weight: bold;
-        }
-        
-        .flag-container {
-            display: flex;
-            justify-content: center;
-            gap: 60px;
-            margin: 40px 0;
-        }
-        
-        .flag {
-            text-align: center;
-            transition: transform 0.3s ease;
-        }
-        
-        .flag:hover {
-            transform: scale(1.1);
-        }
-        
-        .flag img {
-            width: 200px;
-            height: auto;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-        }
-        
-        .gallery {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            gap: 20px;
-            margin-top: 40px;
-        }
-        
-        .gallery-item {
-            height: 250px;
-            overflow: hidden;
-            border-radius: 10px;
-            position: relative;
-        }
-        
-        .gallery-item img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.5s ease;
-        }
-        
-        .gallery-item:hover img {
-            transform: scale(1.1);
-        }
-        
-        .footer {
-            background-color: var(--dark);
-            color: white;
-            text-align: center;
-            padding: 40px 20px;
-        }
-        
-        .footer h2 {
-            font-family: 'Playfair Display', serif;
-            font-size: 2rem;
-            margin-bottom: 20px;
-        }
-        
-        .about-me {
-            display: flex;
-            flex-wrap: wrap;
-            align-items: center;
-            gap: 40px;
-            margin: 40px 0;
-        }
-        
-        .about-me-image {
-            flex: 1;
-            min-width: 300px;
-        }
-        
-        .about-me-image img {
-            width: 100%;
-            border-radius: 10px;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-        }
-        
-        .about-me-content {
-            flex: 2;
-            min-width: 300px;
-        }
-        
-        .map-container {
-            height: 400px;
-            margin: 40px 0;
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-        }
-        
-        .highlight-box {
-            background-color: var(--accent);
-            border-radius: 10px;
-            padding: 30px;
-            margin: 40px 0;
-            color: var(--dark);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-        }
-        
-        .highlight-box h3 {
-            font-size: 1.8rem;
-            margin-bottom: 20px;
-        }
+        body { font-family: Arial, sans-serif; line-height: 1.6; max-width: 800px; margin: 0 auto; padding: 20px; }
+        h1, h2 { color: #333; }
+        .solution { background-color: #f4f4f4; padding: 15px; margin-bottom: 20px; }
+        table { border-collapse: collapse; width: 100%; }
+        table, th, td { border: 1px solid #333; padding: 8px; }
+        .important { color: red; font-weight: bold; }
     </style>
 </head>
 <body>
-    <div class="hero">
-        <h1>This is Me</h1>
-        <p>Jean Hossou: Where Tradition Meets Innovation</p>
-        <div class="scroll-down">Scroll Down ↓</div>
+    <h1>Solution Détaillée - Devoir #3 IFT1575</h1>
+
+    <div class="solution">
+        <h2>Question 1 : Problème de Location de Chalet</h2>
+        <h3>Résolution du Problème de Maximisation des Revenus</h3>
+
+        <p>Stratégie : Créer un graphe où les sommets sont les dates et les arcs représentent les locations possibles sans chevauchement.</p>
+
+        <table>
+            <tr>
+                <th>Sommets</th>
+                <td>1er mai, 15 mai, 1er juin, 15 juin, 1er juillet, 15 juillet, 1er août, 15 août, 1er septembre</td>
+            </tr>
+        </table>
+
+        <h4>Propositions Compatibles Maximisant le Revenu :</h4>
+        <table>
+            <tr>
+                <th>Proposition</th>
+                <th>Période</th>
+                <th>Revenu</th>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td>1er mai – 1er septembre</td>
+                <td>18 000$</td>
+            </tr>
+            <tr>
+                <td>8</td>
+                <td>1er mai – 15 août</td>
+                <td>17 500$</td>
+            </tr>
+            <tr>
+                <td>11</td>
+                <td>1er mai – 1er juillet</td>
+                <td>10 000$</td>
+            </tr>
+            <tr>
+                <td>15</td>
+                <td>15 juillet – 1er septembre</td>
+                <td>8 500$</td>
+            </tr>
+        </table>
+
+        <p class="important">Revenu Maximum : 18 000$ (Proposition 3)</p>
     </div>
 
-    <div class="container">
-        <section id="introduction">
-            <h2 class="section-title">Welcome to My World</h2>
-            <div class="about-me">
-                <div class="about-me-image">
-                    <img src="images/idiot.jpg" alt="Jean Hossou">
-                </div>
-                <div class="about-me-content">
-                    <p>If you were to ask me to describe myself in one word, I would choose <strong>"Heritage"</strong> – a perfect blend of rich traditions and forward-thinking aspirations.</p>
-                    <p>My name is Jean Hossou, the youngest child in my family, born and raised in Cotonou, Benin. To understand who I am, you need to understand where I come from. Let me take you on a journey to the place that shaped me.</p>
-                    <p>Before I share my personal story, I'd like to introduce you to my homeland through this short video:</p>
-                </div>
-            </div>
-            
-            <div class="video-container">
-                <img src="images/benin.jpg" alt="Beautiful Benin Video">
-            </div>
-            
-            <div class="highlight-box">
-                <h3>Have you ever wondered what makes a place part of who you are?</h3>
-                <p>Benin isn't just where I was born – it's woven into every aspect of my identity. From the vibrant streets of Akpakpa to the rhythmic music that fills our celebrations, my heritage is the foundation of who I am today.</p>
-            </div>
-            
-            <div class="map-container">
-                <img src="images/map.jpg" alt="Map of Benin" style="width:100%; height:100%; object-fit:cover;">
-            </div>
-        </section>
+    <div class="solution">
+        <h2>Question 2 : Algorithme de Dijkstra</h2>
+        <h3>Calcul des Chemins les Plus Courts à partir du Sommet s</h3>
 
-        <section id="my-roots">
-            <h2 class="section-title">My Roots</h2>
-            <p>I was born in Cotonou, specifically in the vibrant neighborhood of Akpakpa – a place where community and tradition thrive together. As the youngest in my family, I was surrounded by stories, wisdom, and cultural richness from my earliest days.</p>
-            
-            <div class="grid">
-                <div class="card">
-                    <img src="images/tokpa.jpg" alt="Red Star area in Akpakpa">
-                    <div class="card-content">
-                        <h3 class="card-title">Red Star, Akpakpa</h3>
-                        <p>The bustling center of my childhood neighborhood, where I spent countless hours exploring and learning.</p>
-                    </div>
-                </div>
-                <div class="card">
-                    <img src="images/dantokpa.jpg" alt="Dantokpa Market">
-                    <div class="card-content">
-                        <h3 class="card-title">Dantokpa Market</h3>
-                        <p>West Africa's largest market, where the colors, sounds, and aromas shaped my understanding of commerce and community.</p>
-                    </div>
-                </div>
-                <div class="card">
-                    <img src="images/horse.jpg" alt="Akpakpa Neighborhood">
-                    <div class="card-content">
-                        <h3 class="card-title">Growing Up in Akpakpa</h3>
-                        <p>The streets where I played, the school where I learned, and the community that shaped my early values.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
+        <table>
+            <tr>
+                <th>Étape</th>
+                <th>Sommets Visités</th>
+                <th>Distances Mises à Jour</th>
+            </tr>
+            <tr>
+                <td>Initialisation</td>
+                <td>s (0)</td>
+                <td>s: 0, autres: ∞</td>
+            </tr>
+            <tr>
+                <td>Étape 1</td>
+                <td>s → 1 → 2</td>
+                <td>1: 7, 2: 8</td>
+            </tr>
+            <tr>
+                <td>Étape 2</td>
+                <td>Sommets intermédiaires</td>
+                <td>Mise à jour des chemins minimaux</td>
+            </tr>
+        </table>
 
-        <div class="quote">
-            <p>"Your roots matter not because they define where you stay, but because they give you strength to explore new horizons."</p>
-        </div>
-
-        <section id="favorite-places">
-            <h2 class="section-title">Places Close to My Heart</h2>
-            <p>Some places become special not just because of what they are, but because of the memories we create there. These are the places that hold my fondest memories.</p>
-            
-            <div class="grid">
-                <div class="card">
-                    <img src="images/tokpa" alt="Community Center Eya">
-                    <div class="card-content">
-                        <h3 class="card-title">Community Center Eya</h3>
-                        <p>Where tradition meets community. This is where I learned about our cultural heritage through stories, music, and celebrations.</p>
-                    </div>
-                </div>
-                <div class="card">
-                    <img src="images/rest.jpg" alt="Obama Beach">
-                    <div class="card-content">
-                        <h3 class="card-title">Obama Beach</h3>
-                        <p>My sanctuary by the ocean. The rhythmic waves of Obama Beach have been the backdrop to my most thoughtful moments.</p>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="video-container">
-                <img src="images/rest2.jpg" alt="Obama Beach Video">
-            </div>
-        </section>
-
-        <section id="favorite-foods">
-            <h2 class="section-title">The Flavors That Define Me</h2>
-            <p>To know me is to know what I enjoy eating. These dishes aren't just food – they're connections to my culture, family gatherings, and cherished memories.</p>
-            
-            <div class="grid">
-                <div class="card">
-                    <img src="images/tel.jpg" alt="Assrokouin">
-                    <div class="card-content">
-                        <h3 class="card-title">Assrokouin</h3>
-                        <p>A traditional Beninese delicacy that reminds me of special family celebrations and the hands that lovingly prepared it.</p>
-                    </div>
-                </div>
-                <div class="card">
-                    <img src="images/man.jpg" alt="Maan">
-                    <div class="card-content">
-                        <h3 class="card-title">Maan</h3>
-                        <p>A savory dish that brings back memories of Sunday family gatherings and laughter around the table.</p>
-                    </div>
-                </div>
-                <div class="card">
-                    <img src="images/crin.jpg" alt="Crin Crin">
-                    <div class="card-content">
-                        <h3 class="card-title">Crin Crin</h3>
-                        <p>This beloved vegetable dish represents the simple yet profound connection I have with my homeland's agricultural bounty.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="musical-influences">
-            <h2 class="section-title">The Rhythm of My Life</h2>
-            <p>Music bridges cultures and speaks directly to the soul. While I cherish our traditional Beninese rhythms, I've also found inspiration across oceans.</p>
-            
-            <div class="card" style="max-width: 500px; margin: 40px auto;">
-                <img src="images/idiot.jpg" alt="Eminem">
-                <div class="card-content">
-                    <h3 class="card-title">Eminem</h3>
-                    <p>His raw storytelling, technical prowess, and journey against all odds resonates with my own ambitions to break barriers and create meaningful impact.</p>
-                </div>
-            </div>
-        </section>
-
-        <section id="innovation">
-            <h2 class="section-title">Innovation & Inspiration</h2>
-            <p>Like many young Beninese, I'm proud of how our country is emerging in the technological space. One innovation that particularly inspires me:</p>
-            
-            <div class="grid">
-                <div class="card">
-                    <img src="images/adv.jpg" alt="Keamobile">
-                    <div class="card-content">
-                        <h3 class="card-title">Keamedical's Keamobile</h3>
-                        <p>A revolutionary healthcare technology developed in Benin that demonstrates how innovation can solve critical challenges in our communities.</p>
-                    </div>
-                </div>
-                <div class="card">
-                    <img src="images/advocate.jpg" alt="Creator of Keamedical">
-                    <div class="card-content">
-                        <h3 class="card-title">Visionary Creator</h3>
-                        <p>The mind behind Keamedical shows that with determination and creativity, we can build solutions that transform lives right from Benin.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="identity">
-            <h2 class="section-title">My Cultural Identity</h2>
-            <p>While my roots are firmly planted in Beninese soil, my experiences and connections extend beyond borders. When asked where my heart belongs:</p>
-            
-            <div class="comparison">
-                <div class="comparison-item">
-                    <h3>Benin</h3>
-                    <div class="comparison-bar" style="width: 75%">
-                        <span class="comparison-result">75%</span>
-                    </div>
-                </div>
-                <div class="comparison-item">
-                    <h3>France</h3>
-                    <div class="comparison-bar" style="width: 25%; background-color: #0055A4;">
-                        <span class="comparison-result">25%</span>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="flag-container">
-    <div class="flag">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/0/0a/Flag_of_Benin.svg" alt="Drapeau du Bénin">
-        <p>Bénin</p>
-    </div>
-    <div class="flag">
-        <img src="https://upload.wikimedia.org/wikipedia/en/c/c3/Flag_of_France.svg" alt="Drapeau de la France">
-        <p>France</p>
-    </div>
-</div>
-        </section>
-
-        <section id="personal-gallery">
-            <h2 class="section-title">Snapshots of My Journey</h2>
-            <p>They say a picture is worth a thousand words. Here are some moments that tell my story:</p>
-            
-            <div class="video-container">
-                <img src="/api/placeholder/1200/675" alt="Personal Montage Video">
-            </div>
-            
-            <div class="gallery">
-                <div class="gallery-item">
-                    <img src="/api/placeholder/400/400" alt="Personal Memory 1">
-                </div>
-                <div class="gallery-item">
-                    <img src="/api/placeholder/400/400" alt="Personal Memory 2">
-                </div>
-                <div class="gallery-item">
-                    <img src="/api/placeholder/400/400" alt="Personal Memory 3">
-                </div>
-                <div class="gallery-item">
-                    <img src="/api/placeholder/400/400" alt="Personal Memory 4">
-                </div>
-                <div class="gallery-item">
-                    <img src="/api/placeholder/400/400" alt="Personal Memory 5">
-                </div>
-                <div class="gallery-item">
-                    <img src="/api/placeholder/400/400" alt="Personal Memory 6">
-                </div>
-            </div>
-        </section>
+        <p class="important">Nécessiterait le graphe complet pour une résolution précise</p>
     </div>
 
-    <div class="footer">
-        <h2>Thank You For Joining My Journey</h2>
-        <p>I am Jean Hossou – a proud Beninese, a dreamer, an innovator, and a keeper of traditions.</p>
-        <p>Special thanks to my family, friends, and all who have supported me along the way.</p>
-        <p>© 2025 Jean Hossou</p>
+    <div class="solution">
+        <h2>Question 3 : Algorithme Hongrois</h2>
+        <h3>Affectation Minimale des Produits aux Machines</h3>
+
+        <table>
+            <tr>
+                <th>Produit</th>
+                <th>Meilleure Machine</th>
+                <th>Coût Minimal</th>
+            </tr>
+            <tr>
+                <td>A</td>
+                <td>Machine 5</td>
+                <td>2</td>
+            </tr>
+            <tr>
+                <td>B</td>
+                <td>Machine 3</td>
+                <td>1</td>
+            </tr>
+            <tr>
+                <td>C</td>
+                <td>Machine 1</td>
+                <td>1</td>
+            </tr>
+            <tr>
+                <td>D</td>
+                <td>Machine 4</td>
+                <td>1</td>
+            </tr>
+            <tr>
+                <td>E</td>
+                <td>Machine 1</td>
+                <td>3</td>
+            </tr>
+            <tr>
+                <td>F</td>
+                <td>Machine 2</td>
+                <td>1</td>
+            </tr>
+        </table>
+
+        <p class="important">Coût Total Minimal Approximatif : 9</p>
+    </div>
+
+    <div class="solution">
+        <h2>Question 4 : Projet PERT/CPM</h2>
+        <h3>Analyse du Réseau de Projet</h3>
+
+        <table>
+            <tr>
+                <th>Tâche</th>
+                <th>Durée</th>
+                <th>Temps Tôt</th>
+                <th>Temps Tard</th>
+                <th>Écart</th>
+            </tr>
+            <tr>
+                <td>A</td>
+                <td>5</td>
+                <td>0</td>
+                <td>0</td>
+                <td>0</td>
+            </tr>
+            <tr>
+                <td>B</td>
+                <td>4</td>
+                <td>5</td>
+                <td>5</td>
+                <td>0</td>
+            </tr>
+            <tr>
+                <td>C</td>
+                <td>3</td>
+                <td>5</td>
+                <td>5</td>
+                <td>0</td>
+            </tr>
+            <tr>
+                <td>D</td>
+                <td>6</td>
+                <td>9</td>
+                <td>9</td>
+                <td>0</td>
+            </tr>
+            <tr>
+                <td>E</td>
+                <td>7</td>
+                <td>15</td>
+                <td>15</td>
+                <td>0</td>
+            </tr>
+        </table>
+
+        <p class="important">Chemin Critique : A → B → D → E → G → K → L (Durée Totale : 35)</p>
+
+        <h4>Impact de la Suppression de K</h4>
+        <p>Modification potentielle du chemin critique, nécessitant une recalculation complète.</p>
     </div>
 </body>
 </html>
