@@ -2,192 +2,1658 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <title>Solution Complète - Devoir #3 IFT1575</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MIPS - Notes IFT1027</title>
     <style>
-        body { font-family: Arial, sans-serif; line-height: 1.6; max-width: 800px; margin: 0 auto; padding: 20px; }
-        h1, h2 { color: #333; }
-        .solution { background-color: #f4f4f4; padding: 15px; margin-bottom: 20px; }
-        table { border-collapse: collapse; width: 100%; }
-        table, th, td { border: 1px solid #333; padding: 8px; }
-        .important { color: red; font-weight: bold; }
+        body {
+            font-family: Arial, sans-serif;
+            font-size: 10px;
+            margin: 0;
+            padding: 10px;
+            color: #333;
+        }
+        h1 {
+            font-size: 16px;
+            color: #000;
+            border-bottom: 1px solid #000;
+            margin-top: 10px;
+            margin-bottom: 5px;
+        }
+        h2 {
+            font-size: 14px;
+            color: #333;
+            margin-top: 8px;
+            margin-bottom: 4px;
+        }
+        h3 {
+            font-size: 12px;
+            margin-top: 6px;
+            margin-bottom: 3px;
+        }
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin-bottom: 8px;
+            font-size: 9px;
+        }
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+        th, td {
+            padding: 2px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        .box {
+            border: 1px solid #aaa;
+            padding: 5px;
+            margin-bottom: 8px;
+            background-color: #f9f9f9;
+        }
+        .important {
+            background-color: #ffe6e6;
+            border: 1px solid #ffcccc;
+            padding: 3px;
+        }
+        .note {
+            font-style: italic;
+            color: #666;
+        }
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        .column {
+            flex: 1;
+            min-width: 300px;
+        }
+        pre {
+            font-family: Consolas, monospace;
+            font-size: 9px;
+            background-color: #f5f5f5;
+            padding: 3px;
+            margin: 3px 0;
+            white-space: pre-wrap;
+        }
+        .code {
+            font-family: Consolas, monospace;
+            background-color: #f5f5f5;
+        }
+        .section {
+            margin-bottom: 15px;
+        }
+        .image-container {
+            text-align: center;
+            margin: 5px 0;
+        }
+        .small-table {
+            width: auto;
+            display: inline-block;
+        }
+        .flex-container {
+            display: flex;
+            gap: 10px;
+        }
+        .tiny {
+            font-size: 8px;
+        }
     </style>
 </head>
 <body>
-    <h1>Solution Détaillée - Devoir #3 IFT1575</h1>
+    <h1>Claude AI CheatSheet</h1>
+    <ol>
+        <li><a href="#jeu-instructions">Jeu d'instructions MIPS</a></li>
+        <li><a href="#assembleur">Programmation en assembleur MIPS</a></li>
+        <li><a href="#formats">Formats d'instructions</a></li>
+        <li><a href="#encoding">Encodage des instructions</a></li>
+        <li><a href="#microarchitecture">Microarchitecture MIPS</a></li>
+        <li><a href="#pipeline">Pipeline MIPS</a></li>
+        <li><a href="#memoire">Hiérarchie des mémoires</a></li>
+        <li><a href="#composants">Composants numériques</a></li>
+    </ol>
 
-    <div class="solution">
-        <h2>Question 1 : Problème de Location de Chalet</h2>
-        <h3>Résolution du Problème de Maximisation des Revenus</h3>
-
-        <p>Stratégie : Créer un graphe où les sommets sont les dates et les arcs représentent les locations possibles sans chevauchement.</p>
-
+    <h1 id="jeu-instructions">1. Jeu d'instructions MIPS</h1>
+    
+    <div class="section">
+        <h2>Registres MIPS</h2>
         <table>
             <tr>
-                <th>Sommets</th>
-                <td>1er mai, 15 mai, 1er juin, 15 juin, 1er juillet, 15 juillet, 1er août, 15 août, 1er septembre</td>
+                <th>Nom</th>
+                <th>Numéro</th>
+                <th>Usage</th>
+            </tr>
+            <tr>
+                <td>$zero</td>
+                <td>0</td>
+                <td>Constante 0</td>
+            </tr>
+            <tr>
+                <td>$at</td>
+                <td>1</td>
+                <td>Réservé pour l'assembleur</td>
+            </tr>
+            <tr>
+                <td>$v0-$v1</td>
+                <td>2-3</td>
+                <td>Valeurs de retour des fonctions</td>
+            </tr>
+            <tr>
+                <td>$a0-$a3</td>
+                <td>4-7</td>
+                <td>Arguments des fonctions</td>
+            </tr>
+            <tr>
+                <td>$t0-$t9</td>
+                <td>8-15, 24-25</td>
+                <td>Temporaires (non sauvegardés)</td>
+            </tr>
+            <tr>
+                <td>$s0-$s7</td>
+                <td>16-23</td>
+                <td>Sauvegardés (préservés par les fonctions)</td>
+            </tr>
+            <tr>
+                <td>$k0-$k1</td>
+                <td>26-27</td>
+                <td>Réservés pour le noyau OS</td>
+            </tr>
+            <tr>
+                <td>$gp</td>
+                <td>28</td>
+                <td>Pointeur global</td>
+            </tr>
+            <tr>
+                <td>$sp</td>
+                <td>29</td>
+                <td>Pointeur de pile</td>
+            </tr>
+            <tr>
+                <td>$fp</td>
+                <td>30</td>
+                <td>Pointeur de cadre</td>
+            </tr>
+            <tr>
+                <td>$ra</td>
+                <td>31</td>
+                <td>Adresse de retour</td>
             </tr>
         </table>
-
-        <h4>Propositions Compatibles Maximisant le Revenu :</h4>
-        <table>
-            <tr>
-                <th>Proposition</th>
-                <th>Période</th>
-                <th>Revenu</th>
-            </tr>
-            <tr>
-                <td>3</td>
-                <td>1er mai – 1er septembre</td>
-                <td>18 000$</td>
-            </tr>
-            <tr>
-                <td>8</td>
-                <td>1er mai – 15 août</td>
-                <td>17 500$</td>
-            </tr>
-            <tr>
-                <td>11</td>
-                <td>1er mai – 1er juillet</td>
-                <td>10 000$</td>
-            </tr>
-            <tr>
-                <td>15</td>
-                <td>15 juillet – 1er septembre</td>
-                <td>8 500$</td>
-            </tr>
-        </table>
-
-        <p class="important">Revenu Maximum : 18 000$ (Proposition 3)</p>
     </div>
 
-    <div class="solution">
-        <h2>Question 2 : Algorithme de Dijkstra</h2>
-        <h3>Calcul des Chemins les Plus Courts à partir du Sommet s</h3>
-
+    <div class="section">
+        <h2>Instructions arithmétiques et logiques</h2>
         <table>
             <tr>
-                <th>Étape</th>
-                <th>Sommets Visités</th>
-                <th>Distances Mises à Jour</th>
+                <th>Instruction</th>
+                <th>Format</th>
+                <th>Description</th>
+                <th>Opération</th>
             </tr>
             <tr>
-                <td>Initialisation</td>
-                <td>s (0)</td>
-                <td>s: 0, autres: ∞</td>
+                <td>add</td>
+                <td>add $rd, $rs, $rt</td>
+                <td>Addition</td>
+                <td>$rd = $rs + $rt</td>
             </tr>
             <tr>
-                <td>Étape 1</td>
-                <td>s → 1 → 2</td>
-                <td>1: 7, 2: 8</td>
+                <td>addi</td>
+                <td>addi $rt, $rs, imm</td>
+                <td>Addition avec immédiat</td>
+                <td>$rt = $rs + imm</td>
             </tr>
             <tr>
-                <td>Étape 2</td>
-                <td>Sommets intermédiaires</td>
-                <td>Mise à jour des chemins minimaux</td>
+                <td>sub</td>
+                <td>sub $rd, $rs, $rt</td>
+                <td>Soustraction</td>
+                <td>$rd = $rs - $rt</td>
+            </tr>
+            <tr>
+                <td>mult</td>
+                <td>mult $rs, $rt</td>
+                <td>Multiplication (64-bit)</td>
+                <td>$hi:$lo = $rs * $rt</td>
+            </tr>
+            <tr>
+                <td>div</td>
+                <td>div $rs, $rt</td>
+                <td>Division</td>
+                <td>$lo = $rs / $rt; $hi = $rs % $rt</td>
+            </tr>
+            <tr>
+                <td>mfhi</td>
+                <td>mfhi $rd</td>
+                <td>Copie de $hi</td>
+                <td>$rd = $hi</td>
+            </tr>
+            <tr>
+                <td>mflo</td>
+                <td>mflo $rd</td>
+                <td>Copie de $lo</td>
+                <td>$rd = $lo</td>
+            </tr>
+            <tr>
+                <td>and</td>
+                <td>and $rd, $rs, $rt</td>
+                <td>ET bit à bit</td>
+                <td>$rd = $rs & $rt</td>
+            </tr>
+            <tr>
+                <td>andi</td>
+                <td>andi $rt, $rs, imm</td>
+                <td>ET avec immédiat</td>
+                <td>$rt = $rs & imm</td>
+            </tr>
+            <tr>
+                <td>or</td>
+                <td>or $rd, $rs, $rt</td>
+                <td>OU bit à bit</td>
+                <td>$rd = $rs | $rt</td>
+            </tr>
+            <tr>
+                <td>ori</td>
+                <td>ori $rt, $rs, imm</td>
+                <td>OU avec immédiat</td>
+                <td>$rt = $rs | imm</td>
+            </tr>
+            <tr>
+                <td>xor</td>
+                <td>xor $rd, $rs, $rt</td>
+                <td>XOR bit à bit</td>
+                <td>$rd = $rs ^ $rt</td>
+            </tr>
+            <tr>
+                <td>nor</td>
+                <td>nor $rd, $rs, $rt</td>
+                <td>NOR bit à bit</td>
+                <td>$rd = ~($rs | $rt)</td>
+            </tr>
+            <tr>
+                <td>slt</td>
+                <td>slt $rd, $rs, $rt</td>
+                <td>Set if less than</td>
+                <td>$rd = ($rs < $rt) ? 1 : 0</td>
+            </tr>
+            <tr>
+                <td>slti</td>
+                <td>slti $rt, $rs, imm</td>
+                <td>Set if less than immédiat</td>
+                <td>$rt = ($rs < imm) ? 1 : 0</td>
             </tr>
         </table>
-
-        <p class="important">Nécessiterait le graphe complet pour une résolution précise</p>
     </div>
 
-    <div class="solution">
-        <h2>Question 3 : Algorithme Hongrois</h2>
-        <h3>Affectation Minimale des Produits aux Machines</h3>
-
+    <div class="section">
+        <h2>Instructions de décalage</h2>
         <table>
             <tr>
-                <th>Produit</th>
-                <th>Meilleure Machine</th>
-                <th>Coût Minimal</th>
+                <th>Instruction</th>
+                <th>Format</th>
+                <th>Description</th>
+                <th>Opération</th>
             </tr>
             <tr>
-                <td>A</td>
-                <td>Machine 5</td>
-                <td>2</td>
+                <td>sll</td>
+                <td>sll $rd, $rt, shamt</td>
+                <td>Décalage à gauche logique</td>
+                <td>$rd = $rt << shamt</td>
             </tr>
             <tr>
-                <td>B</td>
-                <td>Machine 3</td>
-                <td>1</td>
+                <td>srl</td>
+                <td>srl $rd, $rt, shamt</td>
+                <td>Décalage à droite logique</td>
+                <td>$rd = $rt >> shamt</td>
             </tr>
             <tr>
-                <td>C</td>
-                <td>Machine 1</td>
-                <td>1</td>
+                <td>sra</td>
+                <td>sra $rd, $rt, shamt</td>
+                <td>Décalage à droite arithmétique</td>
+                <td>$rd = $rt >>> shamt (préserve le signe)</td>
             </tr>
             <tr>
-                <td>D</td>
-                <td>Machine 4</td>
-                <td>1</td>
+                <td>sllv</td>
+                <td>sllv $rd, $rt, $rs</td>
+                <td>Décalage à gauche variable</td>
+                <td>$rd = $rt << $rs</td>
             </tr>
             <tr>
-                <td>E</td>
-                <td>Machine 1</td>
-                <td>3</td>
+                <td>srlv</td>
+                <td>srlv $rd, $rt, $rs</td>
+                <td>Décalage à droite variable</td>
+                <td>$rd = $rt >> $rs</td>
             </tr>
             <tr>
-                <td>F</td>
-                <td>Machine 2</td>
-                <td>1</td>
+                <td>srav</td>
+                <td>srav $rd, $rt, $rs</td>
+                <td>Décalage à droite arithmétique variable</td>
+                <td>$rd = $rt >>> $rs (préserve le signe)</td>
             </tr>
         </table>
-
-        <p class="important">Coût Total Minimal Approximatif : 9</p>
     </div>
 
-    <div class="solution">
-        <h2>Question 4 : Projet PERT/CPM</h2>
-        <h3>Analyse du Réseau de Projet</h3>
-
+    <div class="section">
+        <h2>Instructions de chargement/stockage</h2>
         <table>
             <tr>
-                <th>Tâche</th>
-                <th>Durée</th>
-                <th>Temps Tôt</th>
-                <th>Temps Tard</th>
-                <th>Écart</th>
+                <th>Instruction</th>
+                <th>Format</th>
+                <th>Description</th>
+                <th>Opération</th>
             </tr>
             <tr>
-                <td>A</td>
-                <td>5</td>
-                <td>0</td>
-                <td>0</td>
-                <td>0</td>
+                <td>lw</td>
+                <td>lw $rt, offset($rs)</td>
+                <td>Charge un mot (32 bits)</td>
+                <td>$rt = MEM[$rs + offset]</td>
             </tr>
             <tr>
-                <td>B</td>
-                <td>4</td>
-                <td>5</td>
-                <td>5</td>
-                <td>0</td>
+                <td>sw</td>
+                <td>sw $rt, offset($rs)</td>
+                <td>Stocke un mot (32 bits)</td>
+                <td>MEM[$rs + offset] = $rt</td>
             </tr>
             <tr>
-                <td>C</td>
-                <td>3</td>
-                <td>5</td>
-                <td>5</td>
-                <td>0</td>
+                <td>lb</td>
+                <td>lb $rt, offset($rs)</td>
+                <td>Charge un octet (8 bits) avec extension de signe</td>
+                <td>$rt = SignExt(MEM[$rs + offset])</td>
             </tr>
             <tr>
-                <td>D</td>
-                <td>6</td>
-                <td>9</td>
-                <td>9</td>
-                <td>0</td>
+                <td>lbu</td>
+                <td>lbu $rt, offset($rs)</td>
+                <td>Charge un octet (8 bits) sans signe</td>
+                <td>$rt = ZeroExt(MEM[$rs + offset])</td>
             </tr>
             <tr>
-                <td>E</td>
-                <td>7</td>
-                <td>15</td>
-                <td>15</td>
-                <td>0</td>
+                <td>sb</td>
+                <td>sb $rt, offset($rs)</td>
+                <td>Stocke un octet (8 bits)</td>
+                <td>MEM[$rs + offset] = $rt[7:0]</td>
+            </tr>
+            <tr>
+                <td>lh</td>
+                <td>lh $rt, offset($rs)</td>
+                <td>Charge un demi-mot (16 bits) avec extension de signe</td>
+                <td>$rt = SignExt(MEM[$rs + offset])</td>
+            </tr>
+            <tr>
+                <td>lhu</td>
+                <td>lhu $rt, offset($rs)</td>
+                <td>Charge un demi-mot (16 bits) sans signe</td>
+                <td>$rt = ZeroExt(MEM[$rs + offset])</td>
+            </tr>
+            <tr>
+                <td>sh</td>
+                <td>sh $rt, offset($rs)</td>
+                <td>Stocke un demi-mot (16 bits)</td>
+                <td>MEM[$rs + offset] = $rt[15:0]</td>
+            </tr>
+            <tr>
+                <td>lui</td>
+                <td>lui $rt, imm</td>
+                <td>Load upper immediate</td>
+                <td>$rt = imm << 16</td>
             </tr>
         </table>
-
-        <p class="important">Chemin Critique : A → B → D → E → G → K → L (Durée Totale : 35)</p>
-
-        <h4>Impact de la Suppression de K</h4>
-        <p>Modification potentielle du chemin critique, nécessitant une recalculation complète.</p>
     </div>
+
+    <div class="section">
+        <h2>Instructions de branchement et saut</h2>
+        <table>
+            <tr>
+                <th>Instruction</th>
+                <th>Format</th>
+                <th>Description</th>
+                <th>Opération</th>
+            </tr>
+            <tr>
+                <td>beq</td>
+                <td>beq $rs, $rt, offset</td>
+                <td>Branche si égal</td>
+                <td>if ($rs == $rt) PC += (offset << 2)</td>
+            </tr>
+            <tr>
+                <td>bne</td>
+                <td>bne $rs, $rt, offset</td>
+                <td>Branche si différent</td>
+                <td>if ($rs != $rt) PC += (offset << 2)</td>
+            </tr>
+            <tr>
+                <td>j</td>
+                <td>j target</td>
+                <td>Saut inconditionnel</td>
+                <td>PC = (PC & 0xF0000000) | (target << 2)</td>
+            </tr>
+            <tr>
+                <td>jal</td>
+                <td>jal target</td>
+                <td>Saut et lien</td>
+                <td>$ra = PC + 4; PC = (PC & 0xF0000000) | (target << 2)</td>
+            </tr>
+            <tr>
+                <td>jr</td>
+                <td>jr $rs</td>
+                <td>Saut au registre</td>
+                <td>PC = $rs</td>
+            </tr>
+            <tr>
+                <td>jalr</td>
+                <td>jalr $rs</td>
+                <td>Saut au registre et lien</td>
+                <td>$ra = PC + 4; PC = $rs</td>
+            </tr>
+        </table>
+    </div>
+
+    <h1 id="assembleur">2. Programmation en assembleur MIPS</h1>
+
+    <div class="section">
+        <h2>Conventions d'appel de fonction</h2>
+        <div class="box">
+            <p><strong>Appel de fonction :</strong></p>
+            <ol>
+                <li>Placer les arguments dans $a0-$a3 (et sur la pile si plus de 4)</li>
+                <li>Appeler avec jal nom_fonction</li>
+                <li>Récupérer les résultats dans $v0-$v1</li>
+            </ol>
+            <p><strong>Implémentation d'une fonction :</strong></p>
+            <ol>
+                <li>Sauvegarder $ra et les registres $s qui seront utilisés</li>
+                <li>Allouer l'espace pour les variables locales (ajuster $sp)</li>
+                <li>Exécuter le corps de la fonction</li>
+                <li>Mettre le résultat dans $v0-$v1</li>
+                <li>Restaurer les registres sauvegardés</li>
+                <li>Retourner avec jr $ra</li>
+            </ol>
+        </div>
+        
+        <h3>Exemple de fonction avec pile</h3>
+        <pre>
+fonction:
+    # Prologue
+    addi $sp, $sp, -12      # Allouer espace sur la pile (3 mots)
+    sw $ra, 8($sp)          # Sauvegarder l'adresse de retour
+    sw $s0, 4($sp)          # Sauvegarder $s0
+    sw $s1, 0($sp)          # Sauvegarder $s1
+    
+    # Corps de la fonction
+    add $s0, $a0, $zero     # Copier paramètre dans $s0
+    # ... (code de la fonction)
+    add $v0, $s0, $zero     # Résultat dans $v0
+    
+    # Épilogue
+    lw $s1, 0($sp)          # Restaurer $s1
+    lw $s0, 4($sp)          # Restaurer $s0
+    lw $ra, 8($sp)          # Restaurer l'adresse de retour
+    addi $sp, $sp, 12       # Libérer l'espace pile
+    jr $ra                  # Retour
+        </pre>
+    </div>
+
+    <div class="section">
+        <h2>Structures de contrôle</h2>
+        
+        <div class="flex-container">
+            <div class="box" style="flex: 1;">
+                <h3>if-else</h3>
+                <pre>
+# if (a < b) x = 1; else x = 2;
+# $s0 = a, $s1 = b, $s2 = x
+    slt $t0, $s0, $s1     # $t0 = (a < b) ? 1 : 0
+    beq $t0, $zero, else  # si a >= b, aller à else
+    addi $s2, $zero, 1    # x = 1
+    j endif
+else:
+    addi $s2, $zero, 2    # x = 2
+endif:
+                </pre>
+            </div>
+        
+            <div class="box" style="flex: 1;">
+                <h3>while</h3>
+                <pre>
+# while (i < 10) { sum += i; i++; }
+# $s0 = i, $s1 = sum
+    addi $s0, $zero, 0    # i = 0
+    addi $s1, $zero, 0    # sum = 0
+while:
+    slti $t0, $s0, 10     # $t0 = (i < 10) ? 1 : 0
+    beq $t0, $zero, endw  # si i >= 10, sortir
+    add $s1, $s1, $s0     # sum += i
+    addi $s0, $s0, 1      # i++
+    j while
+endw:
+                </pre>
+            </div>
+            
+            <div class="box" style="flex: 1;">
+                <h3>for</h3>
+                <pre>
+# for (i = 0; i < 10; i++) { sum += arr[i]; }
+# $s0 = i, $s1 = sum, $s2 = &arr[0]
+    addi $s0, $zero, 0    # i = 0
+    addi $s1, $zero, 0    # sum = 0
+for:
+    slti $t0, $s0, 10     # $t0 = (i < 10) ? 1 : 0
+    beq $t0, $zero, endf  # si i >= 10, sortir
+    
+    sll $t1, $s0, 2       # $t1 = i * 4
+    add $t1, $t1, $s2     # $t1 = &arr[i]
+    lw $t2, 0($t1)        # $t2 = arr[i]
+    add $s1, $s1, $t2     # sum += arr[i]
+    
+    addi $s0, $s0, 1      # i++
+    j for
+endf:
+                </pre>
+            </div>
+        </div>
+        
+        <div class="box">
+            <h3>Exemple de fonction récursive</h3>
+            <pre>
+# int factorial(int n) {
+#   if (n <= 1) return 1;
+#   else return n * factorial(n-1);
+# }
+
+factorial:
+    # Prologue
+    addi $sp, $sp, -8     # Allouer espace pile
+    sw $ra, 4($sp)        # Sauvegarder $ra
+    sw $a0, 0($sp)        # Sauvegarder n
+    
+    # Cas de base
+    slti $t0, $a0, 2      # $t0 = (n < 2) ? 1 : 0
+    beq $t0, $zero, recursion
+    addi $v0, $zero, 1    # return 1
+    j factorial_end
+    
+recursion:
+    addi $a0, $a0, -1     # n-1
+    jal factorial         # appel récursif
+    
+    # Après le retour, $v0 contient factorial(n-1)
+    lw $a0, 0($sp)        # récupérer n original
+    mult $a0, $v0         # n * factorial(n-1)
+    mflo $v0              # résultat dans $v0
+    
+factorial_end:
+    # Épilogue
+    lw $ra, 4($sp)        # restaurer $ra
+    addi $sp, $sp, 8      # libérer pile
+    jr $ra                # retourner
+            </pre>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>Accès aux tableaux</h2>
+        <div class="flex-container">
+            <div class="box" style="flex: 1;">
+                <h3>Tableau 1D</h3>
+                <pre>
+# Accès à arr[i]
+# $s0 = base address of arr
+# $s1 = i
+    sll $t0, $s1, 2       # $t0 = i * 4 (taille d'un entier)
+    add $t0, $s0, $t0     # $t0 = adresse de arr[i]
+    lw $t1, 0($t0)        # $t1 = arr[i]
+                </pre>
+            </div>
+            
+            <div class="box" style="flex: 1;">
+                <h3>Tableau 2D (Row-major)</h3>
+                <pre>
+# Accès à arr[i][j] pour un tableau MxN
+# $s0 = base address of arr
+# $s1 = i, $s2 = j, $s3 = N (colonnes)
+    mul $t0, $s1, $s3     # $t0 = i * N
+    add $t0, $t0, $s2     # $t0 = i * N + j
+    sll $t0, $t0, 2       # $t0 = (i * N + j) * 4
+    add $t0, $s0, $t0     # $t0 = adresse de arr[i][j]
+    lw $t1, 0($t0)        # $t1 = arr[i][j]
+                </pre>
+            </div>
+        </div>
+    </div>
+
+    <h1 id="formats">3. Formats d'instructions</h1>
+    
+    <div class="section">
+        <div class="box">
+            <h2>Format R (Register)</h2>
+            <table>
+                <tr>
+                    <th>opcode (6 bits)</th>
+                    <th>rs (5 bits)</th>
+                    <th>rt (5 bits)</th>
+                    <th>rd (5 bits)</th>
+                    <th>shamt (5 bits)</th>
+                    <th>funct (6 bits)</th>
+                </tr>
+                <tr>
+                    <td>31-26</td>
+                    <td>25-21</td>
+                    <td>20-16</td>
+                    <td>15-11</td>
+                    <td>10-6</td>
+                    <td>5-0</td>
+                </tr>
+            </table>
+            <p>Utilisé pour: add, sub, and, or, slt, etc.</p>
+            <p>Opcode est toujours 0, l'opération est définie par funct</p>
+        </div>
+    
+        <div class="box">
+            <h2>Format I (Immediate)</h2>
+            <table>
+                <tr>
+                    <th>opcode (6 bits)</th>
+                    <th>rs (5 bits)</th>
+                    <th>rt (5 bits)</th>
+                    <th>immediate (16 bits)</th>
+                </tr>
+                <tr>
+                    <td>31-26</td>
+                    <td>25-21</td>
+                    <td>20-16</td>
+                    <td>15-0</td>
+                </tr>
+            </table>
+            <p>Utilisé pour: addi, lw, sw, beq, bne, etc.</p>
+        </div>
+    
+        <div class="box">
+            <h2>Format J (Jump)</h2>
+            <table>
+                <tr>
+                    <th>opcode (6 bits)</th>
+                    <th>address (26 bits)</th>
+                </tr>
+                <tr>
+                    <td>31-26</td>
+                    <td>25-0</td>
+                </tr>
+            </table>
+            <p>Utilisé pour: j, jal</p>
+            <p>Adresse effective = (PC & 0xF0000000) | (address << 2)</p>
+        </div>
+    </div>
+
+    <h1 id="encoding">4. Encodage des instructions</h1>
+    
+    <div class="section">
+        <h2>Codes d'opération</h2>
+        <table>
+            <tr>
+                <th>Instruction</th>
+                <th>Type</th>
+                <th>Opcode (hex)</th>
+                <th>Funct (hex)</th>
+            </tr>
+            <tr>
+                <td>R-Type</td>
+                <td>R</td>
+                <td>0x00</td>
+                <td>Varie</td>
+            </tr>
+            <tr>
+                <td>add</td>
+                <td>R</td>
+                <td>0x00</td>
+                <td>0x20</td>
+            </tr>
+            <tr>
+                <td>addu</td>
+                <td>R</td>
+                <td>0x00</td>
+                <td>0x21</td>
+            </tr>
+            <tr>
+                <td>sub</td>
+                <td>R</td>
+                <td>0x00</td>
+                <td>0x22</td>
+            </tr>
+            <tr>
+                <td>subu</td>
+                <td>R</td>
+                <td>0x00</td>
+                <td>0x23</td>
+            </tr>
+            <tr>
+                <td>and</td>
+                <td>R</td>
+                <td>0x00</td>
+                <td>0x24</td>
+            </tr>
+            <tr>
+                <td>or</td>
+                <td>R</td>
+                <td>0x00</td>
+                <td>0x25</td>
+            </tr>
+            <tr>
+                <td>xor</td>
+                <td>R</td>
+                <td>0x00</td>
+                <td>0x26</td>
+            </tr>
+            <tr>
+                <td>nor</td>
+                <td>R</td>
+                <td>0x00</td>
+                <td>0x27</td>
+            </tr>
+            <tr>
+                <td>slt</td>
+                <td>R</td>
+                <td>0x00</td>
+                <td>0x2A</td>
+            </tr>
+
+            <tr>
+                <td>sll</td>
+                <td>R</td>
+                <td>0x00</td>
+                <td>0x00</td>
+            </tr>
+            <tr>
+                <td>srl</td>
+                <td>R</td>
+                <td>0x00</td>
+                <td>0x02</td>
+            </tr>
+            <tr>
+                <td>sra</td>
+                <td>R</td>
+                <td>0x00</td>
+                <td>0x03</td>
+            </tr>
+            <tr>
+                <td>sllv</td>
+                <td>R</td>
+                <td>0x00</td>
+                <td>0x04</td>
+            </tr>
+            <tr>
+                <td>srlv</td>
+                <td>R</td>
+                <td>0x00</td>
+                <td>0x06</td>
+            </tr>
+            <tr>
+                <td>srav</td>
+                <td>R</td>
+                <td>0x00</td>
+                <td>0x07</td>
+            </tr>
+            <tr>
+                <td>jr</td>
+                <td>R</td>
+                <td>0x00</td>
+                <td>0x08</td>
+            </tr>
+            <tr>
+                <td>jalr</td>
+                <td>R</td>
+                <td>0x00</td>
+                <td>0x09</td>
+            </tr>
+            <tr>
+                <td>addi</td>
+                <td>I</td>
+                <td>0x08</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>addiu</td>
+                <td>I</td>
+                <td>0x09</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>slti</td>
+                <td>I</td>
+                <td>0x0A</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>sltiu</td>
+                <td>I</td>
+                <td>0x0B</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>andi</td>
+                <td>I</td>
+                <td>0x0C</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>ori</td>
+                <td>I</td>
+                <td>0x0D</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>xori</td>
+                <td>I</td>
+                <td>0x0E</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>lui</td>
+                <td>I</td>
+                <td>0x0F</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>lb</td>
+                <td>I</td>
+                <td>0x20</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>lh</td>
+                <td>I</td>
+                <td>0x21</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>lw</td>
+                <td>I</td>
+                <td>0x23</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>lbu</td>
+                <td>I</td>
+                <td>0x24</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>lhu</td>
+                <td>I</td>
+                <td>0x25</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>sb</td>
+                <td>I</td>
+                <td>0x28</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>sh</td>
+                <td>I</td>
+                <td>0x29</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>sw</td>
+                <td>I</td>
+                <td>0x2B</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>beq</td>
+                <td>I</td>
+                <td>0x04</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>bne</td>
+                <td>I</td>
+                <td>0x05</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>j</td>
+                <td>J</td>
+                <td>0x02</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>jal</td>
+                <td>J</td>
+                <td>0x03</td>
+                <td>-</td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="section">
+        <h2>Étapes de traduction du code en binaire</h2>
+        <div class="box">
+            <ol>
+                <li><strong>Identifier le format</strong>: R, I, ou J</li>
+                <li><strong>Déterminer les opcode/funct</strong> à partir des tables</li>
+                <li><strong>Remplacer les registres</strong> par leurs numéros</li>
+                <li><strong>Calculer les valeurs immédiates ou adresses</strong> si nécessaire</li>
+                <li><strong>Assembler le tout</strong> dans l'ordre du format</li>
+            </ol>
+        </div>
+        
+        <h3>Exemple pour instruction R-Type</h3>
+        <div class="box">
+            <p><strong>add $t0, $s1, $s2</strong></p>
+            <p>Format R: opcode(6) | rs(5) | rt(5) | rd(5) | shamt(5) | funct(6)</p>
+            <ul>
+                <li>opcode = 000000 (0x00)</li>
+                <li>rs = 10001 ($s1 = 17)</li>
+                <li>rt = 10010 ($s2 = 18)</li>
+                <li>rd = 01000 ($t0 = 8)</li>
+                <li>shamt = 00000 (pas de décalage)</li>
+                <li>funct = 100000 (0x20 pour add)</li>
+            </ul>
+            <p>Résultat: 00000010001100100100000000100000</p>
+            <p>En hexadécimal: 0x02324020</p>
+        </div>
+        
+        <h3>Exemple pour instruction I-Type</h3>
+        <div class="box">
+            <p><strong>lw $t0, 12($s1)</strong></p>
+            <p>Format I: opcode(6) | rs(5) | rt(5) | immediate(16)</p>
+            <ul>
+                <li>opcode = 100011 (0x23 pour lw)</li>
+                <li>rs = 10001 ($s1 = 17)</li>
+                <li>rt = 01000 ($t0 = 8)</li>
+                <li>immediate = 0000000000001100 (12 en décimal)</li>
+            </ul>
+            <p>Résultat: 10001110001010000000000000001100</p>
+            <p>En hexadécimal: 0x8E28000C</p>
+        </div>
+        
+        <h3>Exemple pour instruction J-Type</h3>
+        <div class="box">
+            <p><strong>j 0x100004</strong> (adresse cible)</p>
+            <p>Format J: opcode(6) | address(26)</p>
+            <ul>
+                <li>opcode = 000010 (0x02 pour j)</li>
+                <li>address = 00000000010000000000000001 (0x100004 >> 2)</li>
+            </ul>
+            <p>Résultat: 00001000000000010000000000000001</p>
+            <p>En hexadécimal: 0x08010001</p>
+        </div>
+    </div>
+
+    <h1 id="microarchitecture">5. Microarchitecture MIPS</h1>
+    
+    <div class="section">
+        <h2>Structure de base d'un CPU</h2>
+        <div class="box">
+            <ul>
+                <li><strong>Unité de traitement (datapath)</strong>: Chemin de données, ALU, registres</li>
+                <li><strong>Unité de contrôle</strong>: Génère les signaux de contrôle</li>
+                <li><strong>Mémoire</strong>: Instructions et données</li>
+            </ul>
+        </div>
+        
+        <h2>Implémentations de base</h2>
+        <div class="container">
+            <div class="box" style="flex: 1;">
+                <h3>Monocycle</h3>
+                <ul>
+                    <li>Une instruction = un cycle d'horloge</li>
+                    <li>Cycle déterminé par l'instruction la plus longue</li>
+                    <li>Simple mais lent</li>
+                </ul>
+            </div>
+            
+            <div class="box" style="flex: 1;">
+                <h3>Multicycle</h3>
+                <ul>
+                    <li>Une instruction = plusieurs cycles d'horloge</li>
+                    <li>Phases: fetch, decode, execute, memory, writeback</li>
+                    <li>Chaque phase peut utiliser les mêmes ressources</li>
+                    <li>Plus rapide que monocycle, mais plus complexe</li>
+                </ul>
+            </div>
+            
+            <div class="box" style="flex: 1;">
+                <h3>Pipeline</h3>
+                <ul>
+                    <li>Exécute plusieurs instructions en parallèle</li>
+                    <li>Divisé en 5 étages: IF, ID, EX, MEM, WB</li>
+                    <li>Nécessite gestion des aléas (hazards)</li>
+                    <li>Plus rapide et plus complexe</li>
+                </ul>
+            </div>
+        </div>
+        
+        <h2>Chemin de données (datapath)</h2>
+        <div class="box">
+            <h3>Composants principaux</h3>
+            <ul>
+                <li><strong>PC (Program Counter)</strong>: Registre contenant l'adresse de l'instruction courante</li>
+                <li><strong>Registres</strong>: Banc de 32 registres de 32 bits</li>
+                <li><strong>ALU</strong>: Unité Arithmétique et Logique pour les calculs</li>
+                <li><strong>Mémoire d'instructions</strong>: Stocke les instructions du programme</li>
+                <li><strong>Mémoire de données</strong>: Stocke les données manipulées</li>
+                <li><strong>Multiplexeurs</strong>: Sélectionnent parmi plusieurs entrées</li>
+            </ul>
+            
+            <h3>Signaux de contrôle importants</h3>
+            <table>
+                <tr>
+                    <th>Signal</th>
+                    <th>Description</th>
+                </tr>
+                <tr>
+                    <td>RegWrite</td>
+                    <td>Active l'écriture dans le banc de registres</td>
+                </tr>
+                <tr>
+                    <td>RegDst</td>
+                    <td>Sélectionne le registre destination (rt ou rd)</td>
+                </tr>
+                <tr>
+                    <td>ALUSrc</td>
+                    <td>Sélectionne la 2ème entrée de l'ALU (registre ou immédiat)</td>
+                </tr>
+                <tr>
+                    <td>ALUOp</td>
+                    <td>Détermine l'opération ALU à effectuer</td>
+                </tr>
+                <tr>
+                    <td>MemRead</td>
+                    <td>Active la lecture mémoire de données</td>
+                </tr>
+                <tr>
+                    <td>MemWrite</td>
+                    <td>Active l'écriture mémoire de données</td>
+                </tr>
+                <tr>
+                    <td>MemtoReg</td>
+                    <td>Sélectionne la source pour écriture registre (ALU ou mémoire)</td>
+                </tr>
+                <tr>
+                    <td>PCSrc</td>
+                    <td>Sélectionne la source pour le prochain PC</td>
+                </tr>
+                <tr>
+                    <td>Jump</td>
+                    <td>Indique une instruction de saut</td>
+                </tr>
+                <tr>
+                    <td>Branch</td>
+                    <td>Indique une instruction de branchement</td>
+                </tr>
+            </table>
+        </div>
+        
+        <h2>Unité de contrôle</h2>
+        <div class="box">
+            <p>L'unité de contrôle génère les signaux de contrôle en fonction de:</p>
+            <ul>
+                <li>L'opcode de l'instruction (bits 31-26)</li>
+                <li>Le champ funct (bits 5-0) pour les instructions R-type</li>
+            </ul>
+            
+            <h3>Machine à états (implémentation multicycle)</h3>
+            <ul>
+                <li><strong>S0 (Fetch)</strong>: Chercher l'instruction en mémoire</li>
+                <li><strong>S1 (Decode)</strong>: Décoder l'instruction et lire les registres</li>
+                <li><strong>S2 (MemAddr)</strong>: Calculer l'adresse mémoire pour lw/sw</li>
+                <li><strong>S3 (MemRead)</strong>: Lire la mémoire pour lw</li>
+                <li><strong>S4 (MemWriteback)</strong>: Écrire la valeur lue dans le registre pour lw</li>
+                <li><strong>S5 (MemWrite)</strong>: Écrire en mémoire pour sw</li>
+                <li><strong>S6 (Execute)</strong>: Exécuter l'opération ALU pour R-type</li>
+                <li><strong>S7 (ALUWriteback)</strong>: Écrire le résultat de l'ALU dans le registre</li>
+                <li><strong>S8 (Branch)</strong>: Calculer et prendre la décision de branchement</li>
+                <li><strong>S9 (ADDIExecute)</strong>: Exécuter l'opération ALU pour ADDI</li>
+                <li><strong>S10 (ADDIWriteback)</strong>: Écrire le résultat de ADDI dans le registre</li>
+                <li><strong>S11 (Jump)</strong>: Effectuer un saut</li>
+            </ul>
+        </div>
+        
+        <h2>Implémentation d'instruction personnalisée</h2>
+        <div class="box">
+            <p>Pour implémenter une nouvelle instruction (comme srav dans l'exemple de l'examen):</p>
+            <ol>
+                <li>Identifier les modifications nécessaires dans le chemin de données</li>
+                <li>Ajouter les signaux de contrôle nécessaires</li>
+                <li>Mettre à jour l'unité de contrôle pour gérer l'instruction</li>
+                <li>Modifier la machine à états (pour multicycle) ou ajouter la logique (pour pipeline)</li>
+            </ol>
+            
+            <p>Exemple pour srav (shift right arithmetic variable):</p>
+            <ol>
+                <li>S'assurer que la valeur de rs[4:0] peut être utilisée comme quantité de décalage</li>
+                <li>Ajouter des signaux pour contrôler le décalage arithmétique à droite</li>
+                <li>Ajouter un nouvel état ou modifier les états existants</li>
+                <li>Assurer la production du bon résultat et l'écriture dans rd</li>
+            </ol>
+        </div>
+    </div>
+
+    <h1 id="pipeline">6. Pipeline MIPS</h1>
+    
+    <div class="section">
+        <h2>Étapes du pipeline</h2>
+        <div class="box">
+            <ol>
+                <li><strong>IF (Instruction Fetch)</strong>: Chercher l'instruction en mémoire</li>
+                <li><strong>ID (Instruction Decode)</strong>: Décoder l'instruction et lire les registres</li>
+                <li><strong>EX (Execute)</strong>: Exécuter l'opération ALU ou calculer adresse</li>
+                <li><strong>MEM (Memory Access)</strong>: Accéder à la mémoire si nécessaire</li>
+                <li><strong>WB (Write Back)</strong>: Écrire le résultat dans le registre destination</li>
+            </ol>
+        </div>
+        
+        <h2>Aléas (Hazards)</h2>
+        <div class="flex-container">
+            <div class="box" style="flex: 1;">
+                <h3>Aléas structurels</h3>
+                <ul>
+                    <li>Conflit pour la même ressource matérielle</li>
+                    <li>Ex: Mémoire unique pour instructions et données</li>
+                    <li>Solution: Dupliquer les ressources (mémoire séparée)</li>
+                </ul>
+            </div>
+            
+            <div class="box" style="flex: 1;">
+                <h3>Aléas de données</h3>
+                <ul>
+                    <li>Dépendance entre instructions (RAW, WAR, WAW)</li>
+                    <li>Read After Write (RAW): Instruction attend résultat précédent</li>
+                    <li>Write After Read (WAR): Écriture avant lecture complète</li>
+                    <li>Write After Write (WAW): Écriture avant écriture précédente</li>
+                </ul>
+                <p>Solutions:</p>
+                <ul>
+                    <li><strong>Forwarding</strong>: Transmission directe des résultats</li>
+                    <li><strong>Stall</strong>: Insertion de bulles (nop) dans le pipeline</li>
+                </ul>
+            </div>
+            
+            <div class="box" style="flex: 1;">
+                <h3>Aléas de contrôle</h3>
+                <ul>
+                    <li>Branchements et sauts modifient le flux d'instructions</li>
+                    <li>Résolution tardive des conditions de branchement</li>
+                </ul>
+                <p>Solutions:</p>
+                <ul>
+                    <li><strong>Prédiction de branchement</strong>: Statique ou dynamique</li>
+                    <li><strong>Delayed branch</strong>: Exécuter instruction après branchement</li>
+                    <li><strong>Branch target buffer</strong>: Cache des cibles de branchement</li>
+                </ul>
+            </div>
+        </div>
+        
+        <h2>Techniques de gestion des aléas</h2>
+        <div class="box">
+            <h3>Forwarding (court-circuit)</h3>
+            <p>Permet d'utiliser une valeur dès qu'elle est calculée, sans attendre WB:</p>
+            <pre>
+# Exemple de Forwarding
+add $t0, $s0, $s1   # Calcule $t0 = $s0 + $s1
+sub $t1, $t0, $s2   # Calcule $t1 = $t0 - $s2
+            </pre>
+            <p>Sans forwarding: stall nécessaire entre add et sub</p>
+            <p>Avec forwarding: résultat de add transmis directement à la phase EX de sub</p>
+            
+            <h3>Détection des aléas et stalls</h3>
+            <p>Logique de détection:</p>
+            <pre>
+# Aléas RAW pour load (nécessite stall)
+if (ID/EX.MemRead AND 
+    ((ID/EX.RegisterRd == IF/ID.RegisterRs) OR
+     (ID/EX.RegisterRd == IF/ID.RegisterRt)))
+    then stall
+            </pre>
+            
+            <h3>Logique de Forwarding</h3>
+            <pre>
+# Pour l'entrée A de l'ALU
+if (EX/MEM.RegWrite AND
+    (EX/MEM.RegisterRd ≠ 0) AND
+    (EX/MEM.RegisterRd == ID/EX.RegisterRs))
+    ForwardA = 10 (forward from EX/MEM)
+else if (MEM/WB.RegWrite AND
+         (MEM/WB.RegisterRd ≠ 0) AND
+         (MEM/WB.RegisterRd == ID/EX.RegisterRs))
+    ForwardA = 01 (forward from MEM/WB)
+else
+    ForwardA = 00 (use register value)
+            </pre>
+        </div>
+        
+        <h2>Calcul de performance</h2>
+        <div class="box">
+            <p><strong>CPI (Cycles Par Instruction)</strong></p>
+            <p>CPI = Nombre total de cycles / Nombre d'instructions</p>
+            
+            <p><strong>Pour un pipeline parfait:</strong></p>
+            <p>CPI = 1 + (n-1)/m</p>
+            <p>où n = nombre d'étages du pipeline (5 pour MIPS), m = nombre d'instructions</p>
+            <p>Pour m grand, CPI → 1</p>
+            
+            <p><strong>Avec stalls:</strong></p>
+            <p>CPI = 1 + (Nombre de stalls / Nombre d'instructions)</p>
+            
+            <p><strong>Speedup:</strong></p>
+            <p>Speedup = Temps d'exécution sans pipeline / Temps d'exécution avec pipeline</p>
+            <p>Speedup = (CPI_sans_pipeline × Cycle_time_sans_pipeline) / (CPI_avec_pipeline × Cycle_time_avec_pipeline)</p>
+        </div>
+    </div>
+
+    <h1 id="memoire">7. Hiérarchie des mémoires</h1>
+    
+    <div class="section">
+        <h2>Principe de la hiérarchie</h2>
+        <div class="box">
+            <ul>
+                <li><strong>Principe de localité</strong>: Temporelle et spatiale</li>
+                <li><strong>Niveaux</strong>: Registres → Cache L1 → Cache L2 → Mémoire principale → Disque</li>
+                <li><strong>Caractéristiques</strong>: Capacité ↑, Vitesse ↓, Coût ↓</li>
+            </ul>
+        </div>
+        
+        <h2>Types de mémoires</h2>
+        <div class="flex-container">
+            <div class="box" style="flex: 1;">
+                <h3>Registres</h3>
+                <ul>
+                    <li>Très rapides (1 cycle)</li>
+                    <li>Très petits (32 × 32 bits)</li>
+                    <li>Intégrés au CPU</li>
+                </ul>
+            </div>
+            
+            <div class="box" style="flex: 1;">
+                <h3>Cache</h3>
+                <ul>
+                    <li>Rapide (1-10 cycles)</li>
+                    <li>Petite taille (KB-MB)</li>
+                    <li>SRAM (Static RAM)</li>
+                    <li>Niveaux: L1, L2, L3</li>
+                </ul>
+            </div>
+            
+            <div class="box" style="flex: 1;">
+                <h3>Mémoire principale</h3>
+                <ul>
+                    <li>Moyenne vitesse (100+ cycles)</li>
+                    <li>Grande taille (GB)</li>
+                    <li>DRAM (Dynamic RAM)</li>
+                </ul>
+            </div>
+            
+            <div class="box" style="flex: 1;">
+                <h3>Stockage secondaire</h3>
+                <ul>
+                    <li>Lent (millions de cycles)</li>
+                    <li>Très grande taille (TB)</li>
+                    <li>Disque dur, SSD</li>
+                </ul>
+            </div>
+        </div>
+        
+        <h2>Organisation du cache</h2>
+        <div class="box">
+            <p>Adresse mémoire divisée en:</p>
+            <ul>
+                <li><strong>Tag</strong>: Identifie le bloc en mémoire</li>
+                <li><strong>Index</strong>: Identifie l'ensemble dans le cache</li>
+                <li><strong>Offset</strong>: Position dans le bloc</li>
+            </ul>
+            
+            <h3>Types d'organisation</h3>
+            <ul>
+                <li><strong>Cache direct-mapped</strong>: Un bloc mémoire ne peut aller qu'à un seul emplacement</li>
+                <li><strong>Cache associatif par ensemble</strong>: Un bloc peut aller dans N emplacements d'un ensemble</li>
+                <li><strong>Cache entièrement associatif</strong>: Un bloc peut aller n'importe où</li>
+            </ul>
+            
+            <h3>Calcul d'adresses cache</h3>
+            <p>Pour un cache direct-mapped:</p>
+            <p>Index = (Adresse / Taille_bloc) % Nombre_lignes</p>
+            <p>Tag = Adresse / (Taille_bloc * Nombre_lignes)</p>
+            <p>Offset = Adresse % Taille_bloc</p>
+        </div>
+        
+        <h2>Politiques de cache</h2>
+        <div class="flex-container">
+            <div class="box" style="flex: 1;">
+                <h3>Politique d'écriture</h3>
+                <ul>
+                    <li><strong>Write-through</strong>: Écriture simultanée cache et mémoire</li>
+                    <li><strong>Write-back</strong>: Écriture en mémoire seulement quand le bloc est remplacé</li>
+                </ul>
+            </div>
+            
+            <!-- Continuation de la section "Politiques de cache" -->
+<div class="box" style="flex: 1;">
+    <h3>Politique d'allocation</h3>
+    <ul>
+        <li><strong>Write-allocate</strong>: Charger en cache lors d'une écriture manquée (miss)</li>
+        <li><strong>No-write-allocate</strong>: Ne pas charger en cache lors d'une écriture manquée, modifier directement en mémoire</li>
+    </ul>
+    <h3>Combinaisons communes</h3>
+    <ul>
+        <li><strong>Write-back + Write-allocate</strong>: Optimisation pour minimiser les accès à la mémoire principale</li>
+        <li><strong>Write-through + No-write-allocate</strong>: Simplicité, mais plus d'accès mémoire</li>
+    </ul>
+</div>
+</div>
+
+<h2>Politique de remplacement</h2>
+<div class="box">
+    <p>Lorsqu'un nouveau bloc doit être chargé en cache et que le cache est plein :</p>
+    <ul>
+        <li><strong>LRU (Least Recently Used)</strong>: Remplacer le bloc non utilisé depuis le plus longtemps
+            <ul class="tiny">
+                <li>Implémentation: Compteurs ou bits de référence pour chaque ligne</li>
+                <li>Avantage: Exploite la localité temporelle</li>
+            </ul>
+        </li>
+        <li><strong>FIFO (First In First Out)</strong>: Remplacer le bloc le plus ancien chargé dans le cache
+            <ul class="tiny">
+                <li>Implémentation: File circulaire simple</li>
+                <li>Avantage: Plus facile à implémenter que LRU</li>
+            </ul>
+        </li>
+        <li><strong>Random</strong>: Choisir aléatoirement un bloc à remplacer
+            <ul class="tiny">
+                <li>Implémentation: Générateur pseudo-aléatoire</li>
+                <li>Avantage: Simple, pas d'état à maintenir</li>
+            </ul>
+        </li>
+    </ul>
+</div>
+
+<h2>Mesures de performance du cache</h2>
+<div class="flex-container">
+    <div class="box" style="flex: 1;">
+        <h3>Taux de succès (Hit rate)</h3>
+        <ul>
+            <li><strong>Formule</strong>: Hits / (Hits + Misses)</li>
+            <li><strong>Objectif</strong>: Maximiser (>95% pour un bon cache)</li>
+        </ul>
+        <h3>Temps d'accès moyen</h3>
+        <p class="tiny">T<sub>moyen</sub> = T<sub>hit</sub> + Taux<sub>miss</sub> × T<sub>pénalité</sub></p>
+        <ul class="tiny">
+            <li>T<sub>hit</sub>: Temps d'accès au cache (1-2 cycles)</li>
+            <li>Taux<sub>miss</sub>: Misses / (Hits + Misses)</li>
+            <li>T<sub>pénalité</sub>: Temps d'accès à la mémoire (50-200 cycles)</li>
+        </ul>
+    </div>
+    
+    <div class="box" style="flex: 1;">
+        <h3>Types de miss</h3>
+        <ul>
+            <li><strong>Miss obligatoire (Compulsory)</strong>: Premier accès à un bloc (cold miss)</li>
+            <li><strong>Miss de capacité</strong>: Cache trop petit pour contenir tous les blocs actifs</li>
+            <li><strong>Miss de conflit</strong>: Plusieurs blocs mappés à la même ligne (cache associatif)</li>
+            <li><strong>Miss de cohérence</strong>: Dans les systèmes multi-processeurs</li>
+        </ul>
+        <h3>Optimisations</h3>
+        <ul class="tiny">
+            <li><strong>Prefetching</strong>: Charger anticipativement des blocs</li>
+            <li><strong>Augmenter l'associativité</strong>: Réduit les misses de conflit</li>
+            <li><strong>Augmenter la taille du bloc</strong>: Exploite la localité spatiale</li>
+        </ul>
+    </div>
+</div>
+
+<h2>TLB (Translation Lookaside Buffer)</h2>
+<div class="box">
+    <p>Cache spécialisé pour la traduction d'adresses virtuelles en adresses physiques</p>
+    <div class="flex-container">
+        <div style="flex: 1;">
+            <h3>Structure</h3>
+            <ul>
+                <li><strong>Entrées</strong>: Numéro de page virtuelle → Numéro de page physique</li>
+                <li><strong>Taille typique</strong>: 64-512 entrées</li>
+                <li><strong>Organisation</strong>: Souvent totalement associative</li>
+            </ul>
+        </div>
+        <div style="flex: 1;">
+            <h3>Fonctionnement</h3>
+            <ol class="tiny">
+                <li>Extraire le numéro de page virtuelle de l'adresse</li>
+                <li>Rechercher dans le TLB</li>
+                <li>Si hit → utiliser le numéro de page physique</li>
+                <li>Si miss → accéder à la table des pages en mémoire</li>
+            </ol>
+        </div>
+    </div>
+    <h3>Calcul d'adresse avec TLB</h3>
+    <pre>
+AdresseVirtuelle = NuméroPageVirtuelle | Offset
+AdressePhysique = TLB[NuméroPageVirtuelle] | Offset
+    </pre>
+</div>
+
+<h2>Mémoire virtuelle</h2>
+<div class="flex-container">
+    <div class="box" style="flex: 1;">
+        <h3>Principes</h3>
+        <ul>
+            <li><strong>But</strong>: Donner l'illusion d'une mémoire plus grande que la mémoire physique</li>
+            <li><strong>Pages</strong>: Blocs de taille fixe (4KB typiquement)</li>
+            <li><strong>Pagination</strong>: Transfert de pages entre mémoire et disque</li>
+            <li><strong>Espace d'adressage</strong>: Unique par processus</li>
+        </ul>
+        <h3>Table des pages</h3>
+        <ul class="tiny">
+            <li><strong>Structure</strong>: Table indexée par numéro de page virtuelle</li>
+            <li><strong>Entrée</strong>: NPP, bits de validité, protection, modification</li>
+            <li><strong>Hiérarchique</strong>: Souvent à plusieurs niveaux pour économiser l'espace</li>
+        </ul>
+    </div>
+    
+    <div class="box" style="flex: 1;">
+        <h3>Bits de contrôle</h3>
+        <ul>
+            <li><strong>Valid bit (V)</strong>: Page présente en mémoire physique</li>
+            <li><strong>Modified/Dirty bit (M)</strong>: Page modifiée depuis chargement</li>
+            <li><strong>Reference bit (R)</strong>: Page accédée récemment</li>
+            <li><strong>Protection bits</strong>: Droits d'accès (lecture/écriture/exécution)</li>
+        </ul>
+        <h3>Défaut de page (Page fault)</h3>
+        <ol class="tiny">
+            <li>CPU détecte un accès à une page invalide</li>
+            <li>Exception générée vers OS</li>
+            <li>OS trouve la page sur disque</li>
+            <li>OS charge la page en mémoire (éviction si nécessaire)</li>
+            <li>Mise à jour de la table des pages</li>
+            <li>Reprise de l'instruction</li>
+        </ol>
+    </div>
+</div>
+
+<h2>Algorithmes de remplacement de pages</h2>
+<div class="box">
+    <div class="flex-container">
+        <div style="flex: 1;">
+            <h3>LRU (Least Recently Used)</h3>
+            <ul class="tiny">
+                <li>Remplacer la page non utilisée depuis le plus longtemps</li>
+                <li><strong>Implémentation approximative</strong>: Bits de référence avec reset périodique</li>
+            </ul>
+            <h3>FIFO (First In First Out)</h3>
+            <ul class="tiny">
+                <li>Remplacer la page chargée en premier</li>
+                <li><strong>Anomalie de Belady</strong>: Plus de mémoire peut causer plus de défauts</li>
+            </ul>
+        </div>
+        <div style="flex: 1;">
+            <h3>Second Chance</h3>
+            <ul class="tiny">
+                <li>FIFO modifié avec bit de référence</li>
+                <li>Si R=1, mettre à 0 et donner une seconde chance</li>
+            </ul>
+            <h3>NRU (Not Recently Used)</h3>
+            <ul class="tiny">
+                <li>Utilise bits R et M pour classer les pages en 4 catégories</li>
+                <li>Priorité d'éviction: (R=0,M=0) → (R=0,M=1) → (R=1,M=0) → (R=1,M=1)</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<h1 id="optimisation">8. Optimisation de la performance</h1>
+<div class="section">
+    <h2>Métriques de performance</h2>
+    <div class="box">
+        <h3>Équation de performance</h3>
+        <pre>
+Temps_CPU = Nombre_Instructions × CPI × Temps_Cycle
+        </pre>
+        <ul>
+            <li><strong>CPI (Cycles Per Instruction)</strong>: Nombre moyen de cycles par instruction</li>
+            <li><strong>IPC (Instructions Per Cycle)</strong>: Inverse du CPI, mesure le parallélisme</li>
+            <li><strong>MIPS (Millions d'Instructions Par Seconde)</strong>: Fréquence / (CPI × 10<sup>6</sup>)</li>
+        </ul>
+    </div>
+
+    <h2>CPI dans le pipeline MIPS</h2>
+    <div class="box">
+        <h3>CPI idéal vs réel</h3>
+        <ul>
+            <li><strong>CPI idéal</strong>: 1 (une instruction terminée par cycle)</li>
+            <li><strong>CPI réel</strong>: 1 + (Nombre_Stalls / Nombre_Instructions)</li>
+        </ul>
+        <h3>Calcul du CPI pour un programme</h3>
+        <pre>
+CPI = Σ(Fréquence_Type_i × CPI_Type_i)
+
+Exemple:
+- ALU: 50% × 1 cycle = 0.5
+- Branchement: 20% × 2 cycles = 0.4
+- Mémoire: 30% × 2 cycles = 0.6
+CPI total = 0.5 + 0.4 + 0.6 = 1.5
+        </pre>
+    </div>
+
+    <h2>Loi d'Amdahl</h2>
+    <div class="box">
+        <p>Accélération maximale possible en optimisant une partie d'un système</p>
+        <pre>
+Accélération = 1 / ((1 - P) + P/S)
+
+P = proportion du temps d'exécution dans la partie améliorée
+S = facteur d'accélération de cette partie
+        </pre>
+        <h3>Exemple</h3>
+        <p class="tiny">Si 40% du temps peut être parallélisé sur 4 cœurs (S=4):</p>
+        <pre class="tiny">
+Accélération = 1 / ((1 - 0.4) + 0.4/4) = 1 / (0.6 + 0.1) = 1 / 0.7 = 1.43
+        </pre>
+    </div>
+</div>
+
+<h1 id="composants">9. Composants numériques</h1>
+<div class="section">
+    <h2>Circuits combinatoires</h2>
+    <div class="flex-container">
+        <div class="box" style="flex: 1;">
+            <h3>Portes logiques de base</h3>
+            <ul>
+                <li><strong>ET (AND)</strong>: S = A · B</li>
+                <li><strong>OU (OR)</strong>: S = A + B</li>
+                <li><strong>NON (NOT)</strong>: S = Ā</li>
+                <li><strong>NON-ET (NAND)</strong>: S = A · B̄</li>
+                <li><strong>NON-OU (NOR)</strong>: S = A + B̄</li>
+                <li><strong>OU exclusif (XOR)</strong>: S = A ⊕ B = A·B̄ + Ā·B</li>
+            </ul>
+        </div>
+        <div class="box" style="flex: 1;">
+            <h3>Circuits arithmétiques</h3>
+            <ul>
+                <li><strong>Demi-additionneur</strong>: S = A ⊕ B, Cout = A · B</li>
+                <li><strong>Additionneur complet</strong>: S = A ⊕ B ⊕ Cin, Cout = AB + ACin + BCin</li>
+                <li><strong>ALU</strong>: Circuit combinant plusieurs opérations arithmétiques et logiques</li>
+            </ul>
+            <h3>Multiplexeur</h3>
+            <ul class="tiny">
+                <li><strong>MUX 2:1</strong>: S = A·Sel̄ + B·Sel</li>
+                <li><strong>Utilisation</strong>: Sélection entre plusieurs entrées</li>
+            </ul>
+        </div>
+    </div>
+
+    <h2>Circuits séquentiels</h2>
+    <div class="flex-container">
+        <div class="box" style="flex: 1;">
+            <h3>Bascule D (D-Flip-Flop)</h3>
+            <ul>
+                <li><strong>Fonction</strong>: Mémorise une valeur à chaque front d'horloge</li>
+                <li><strong>Équation</strong>: Q(t+1) = D(t)</li>
+                <li><strong>Utilisation</strong>: Registres, compteurs</li>
+            </ul>
+            <h3>Registre</h3>
+            <ul class="tiny">
+                <li><strong>Structure</strong>: n bascules D en parallèle</li>
+                <li><strong>Signaux</strong>: Enable, Clock, Reset</li>
+            </ul>
+        </div>
+        <div class="box" style="flex: 1;">
+            <h3>Mémoire ROM</h3>
+            <ul>
+                <li><strong>Structure</strong>: Table de vérité implémentée en matériel</li>
+                <li><strong>Utilisation</strong>: Microcode, tables de conversion</li>
+            </ul>
+            <h3>Machines à états finis</h3>
+            <ul class="tiny">
+                <li><strong>États</strong>: Stockés dans des bascules</li>
+                <li><strong>Transitions</strong>: Déterminées par un circuit combinatoire</li>
+                <li><strong>Exemple</strong>: Contrôleur MIPS</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<h1 id="performance">10. Questions d'examen typiques</h1>
+<div class="section">
+    <div class="flex-container">
+        <div class="box" style="flex: 1;">
+            <h3>Architecture MIPS</h3>
+            <ul>
+                <li>Traduire du code C en assembleur MIPS</li>
+                <li>Convertir entre assembleur et code machine</li>
+                <li>Identifier les modes d'adressage</li>
+                <li>Implémenter des structures de contrôle (if, loops)</li>
+                <li>Utiliser correctement la pile et les conventions d'appel</li>
+            </ul>
+        </div>
+        <div class="box" style="flex: 1;">
+            <h3>Microarchitecture</h3>
+            <ul>
+                <li>Modifier un chemin de données pour une instruction</li>
+                <li>Compléter/modifier une machine à états finis</li>
+                <li>Identifier les signaux de contrôle nécessaires</li>
+                <li>Calculer les temps d'exécution (mono-cycle vs multi-cycle)</li>
+            </ul>
+        </div>
+    </div>
+    <div class="flex-container">
+        <div class="box" style="flex: 1;">
+            <h3>Pipeline</h3>
+            <ul>
+                <li>Identifier les dépendances dans le code</li>
+                <li>Dessiner l'état du pipeline avec stalls et forwarding</li>
+                <li>Calculer le CPI moyen du code</li>
+                <li>Optimiser le code pour réduire les aléas</li>
+            </ul>
+        </div>
+        <div class="box" style="flex: 1;">
+            <h3>Mémoire</h3>
+            <ul>
+                <li>Calculer les adresses pour différentes organisations de cache</li>
+                <li>Analyser les accès mémoire (hit/miss)</li>
+                <li>Expliquer les politiques de remplacement</li>
+                <li>Calculer le temps d'accès moyen</li>
+            </ul>
+        </div>
+    </div>
+</div>
 </body>
 </html>
