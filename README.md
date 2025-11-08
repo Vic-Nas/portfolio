@@ -1,35 +1,37 @@
-# [Portfolio Victorio](https://vic-nas.github.io/portfolio)
+# [**My Portfolio**](https://vic-nas.github.io/portfolio/)
 
-Bienvenue sur mon portfolio ! Ce projet est une page web personnelle présentant mes compétences, projets et expériences.
+Welcome to my portfolio! This project is a personal webpage showcasing my skills, projects, and experience.
 
-## 📂 Structure du projet
+## 📂 **Project Structure**
 
 ```
 portfolio-victorio/
 │
-├── index.html          # Page principale
+├── index.html          # Main page
+├── manager.html        # GUI page used to edit index.html
 ├── assets/
 │   ├── css/
-│   │   └── styles.css  # Styles principaux
+│   │   └── styles.css  # Main styles
 │   ├── js/
-│   │   └── script.js   # Fonctionnalités JavaScript
+│   │   └── script.js   # JavaScript features
 │   └── images/
-│       ├── profile.jpg # Photo de profil
-│       └── icons/      # Icônes pour les compétences, contacts, etc.
-└── README.md           # Documentation du projet
+│       ├── profile.jpg # Profile photo
+│       └── icons/      # Icons for skills, contacts, etc.
+└── README.md           # Project documentation
 ```
 
-## 🚀 Fonctionnalités
+## 🚀 **Features**
 
-- Présentation de mon parcours et de mes compétences
-- Liste de projets avec liens et descriptions
-- Contact et liens vers mes réseaux sociaux
-- Interface responsive et interactive
+* Presentation of my background and skills
+* Project list with links and descriptions
+* Contact section and links to my social networks
+* Responsive and interactive interface
 
-## 🎨 Technologies utilisées
+## 🎨 **Technologies Used**
 
-- **HTML** : Structure du site
-- **CSS** : Mise en page et design
-- **JavaScript** : Dynamisation du site
+* **HTML**: Website structure
+* **CSS**: Layout and design
+* **JavaScript**: Website interactivity
 
-© 2025 Victorio - Tous droits réservés.
+© 2025 Victorio - All rights reserved.
+
