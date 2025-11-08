@@ -1129,4 +1129,45 @@
 
     
 
-</body></html>
+<script type="text/javascript">
+                        (function(){
+                            function attach(){
+                                document.querySelectorAll('.tab-btn').forEach(function(button){
+                                    button.addEventListener('click', function(){
+                                        var tabId = this.getAttribute('data-tab');
+                                        document.querySelectorAll('.tab-btn').forEach(function(b){ b.classList.remove('active'); });
+                                        document.querySelectorAll('.tab-content').forEach(function(c){ c.classList.remove('active'); });
+                                        this.classList.add('active');
+                                        var target = document.getElementById(tabId);
+                                        if(target) target.classList.add('active');
+                                    });
+                                });
+
+                                document.querySelectorAll('a[href^="#"]').forEach(function(anchor){
+                                    anchor.addEventListener('click', function(e){
+                                        e.preventDefault();
+                                        var target = document.querySelector(this.getAttribute('href'));
+                                        if(target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                                    });
+                                });
+
+                                var form = document.getElementById('contact-form');
+                                if(form){
+                                    form.addEventListener('submit', async function(e){
+                                        e.preventDefault();
+                                        var submitBtn = form.querySelector('button[type="submit"]');
+                                        var orig = submitBtn ? submitBtn.innerHTML : '';
+                                        if(submitBtn){ submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...'; submitBtn.disabled = true; }
+                                        try{
+                                            var res = await fetch('https://formspree.io/f/xrbpglow', { method: 'POST', body: new FormData(form), headers: { 'Accept': 'application/json' } });
+                                            var statusDiv = document.getElementById('form-status');
+                                            if(res.ok){ if(statusDiv){ statusDiv.innerHTML = '<p style="color: #10b981;">✓ Message sent successfully!</p>'; statusDiv.style.display = 'block'; } form.reset(); }
+                                            else { if(statusDiv){ statusDiv.innerHTML = '<p style="color: #ef4444;">✗ Error sending message. Please try again.</p>'; statusDiv.style.display = 'block'; } }
+                                        }catch(err){ var statusDiv = document.getElementById('form-status'); if(statusDiv){ statusDiv.innerHTML = '<p style="color: #ef4444;">✗ Error sending message. Please try again.</p>'; statusDiv.style.display = 'block'; } }
+                                        if(submitBtn){ submitBtn.innerHTML = orig; submitBtn.disabled = false; }
+                                    });
+                                }
+                            }
+                            if(document.readyState === 'loading') document.addEventListener('DOMContentLoaded', attach); else attach();
+                        })();
+                    </script></body></html>
