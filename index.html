@@ -1159,7 +1159,7 @@
                                         var orig = submitBtn ? submitBtn.innerHTML : '';
                                         if(submitBtn){ submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...'; submitBtn.disabled = true; }
                                         try{
-                                            var res = await fetch('https://ad63f9142d8b.ngrok-free.app/webhook/portfolio-contact', { method: 'POST', body: new FormData(form), headers: { 'Accept': 'application/json' } });
+                                            var res = await fetch('https://b59be50d67d2.ngrok-free.app/webhook/portfolio-contact', { method: 'POST', body: new FormData(form), headers: { 'Accept': 'application/json' } });
                                             var statusDiv = document.getElementById('form-status');
                                             if(res.ok){ if(statusDiv){ statusDiv.innerHTML = '<p style="color: #10b981;">✓ Message sent successfully!</p>'; statusDiv.style.display = 'block'; } form.reset(); }
                                             else { if(statusDiv){ statusDiv.innerHTML = '<p style="color: #ef4444;">✗ I am currently offline. Please send an email.</p>'; statusDiv.style.display = 'block'; } }
